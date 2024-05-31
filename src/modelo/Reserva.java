@@ -22,17 +22,11 @@ public class Reserva {
         reservador=res;
     }
 
-    //geters
+    //getters
     public int getCodReserva(){ return codReserva; }
     public int getUltReserva(){ return ultimaReserva; }
-    public Calendar getFechaHora()
-    {
-        return fechaHora;
-    }
-    public int getDuracion()
-    {
-        return duracion;
-    }
+    public Calendar getFechaHora(){ return fechaHora; }
+    public int getDuracion(){ return duracion; }
 }
 
 
