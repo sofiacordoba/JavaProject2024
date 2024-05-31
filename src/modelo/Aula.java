@@ -23,7 +23,7 @@ public class Aula {
         capacidad=cap;
     }
 
-    //geters
+    //getters
     public int getID(){ return ID; }
     public int getCapacidad(){ return capacidad; }
 
