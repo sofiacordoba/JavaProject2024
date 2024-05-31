@@ -19,10 +19,9 @@ public class Evento extends Reservador {
         cantMaxParticipantes=cantmax;
     }
 
-    //geters
+    //getters
     public Calendar getFechaHora(){ return fechaHora; }
     public int getDuracion(){ return duracion; }
-
     public int getCantMax(){ return cantMaxParticipantes; }
 }
 
