@@ -1,4 +1,4 @@
-package Modelo;
+package modelo;
 
 import java.util.*;
 
@@ -64,23 +64,23 @@ public class Aula {
             if(reservaAct.getCodReserva() == codRes)
             {
                 reservaCancelar = reservaAct;
-                break;
+                break; //ver si se puede
             }
         }
 
-        if (reservacancelar != null) //encontró la reserva a cancelar
+        if (reservaCancelar != null) //encontró la reserva a cancelar
         {
-            reservas.remove(reservacancelar);
-            System.out.println ("Se canceló la reserva " + codres + " exitosamente.");
+            reservas.remove(reservaCancelar);
+            System.out.println ("Se canceló la reserva " + codRes + " exitosamente."); //NOOOO. try catch
         }
         else //no encontró la reserva
-            System.out.println("No se encontró la reserva "+ codres + ".");
+            System.out.println("No se encontró la reserva "+ codRes + ".");
     }
 
     @Override
     public String toString() //sobreescrito toString
     {
-        return "AULA "+ ID +", capacidad máxima: "+capacidad;
+        return "AULA "+ ID +", capacidad máxima: "+ capacidad;
     }
 
 

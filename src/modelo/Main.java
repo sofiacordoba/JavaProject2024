@@ -1,4 +1,4 @@
-package Modelo;
+package modelo;
 
 import java.util.*;
 
@@ -25,7 +25,7 @@ public class Main {
         }
 
         if (aulaCancelar != null) //encontró el aula con la reserva a cancelar
-            aulaCancelar.cancelarReserva(codres);
+            aulaCancelar.cancelarReserva(codRes);
         else //no encontró el aula
             System.out.println("No se encontró el aula "+ idAula);
 
