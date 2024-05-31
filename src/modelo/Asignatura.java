@@ -22,7 +22,7 @@ public class Asignatura extends Reservador {
         cantAlumnos=cantal;
     }
 
-    //geters
+    //getters
     public Calendar getFechaHoraI(){return fechaHoraInicio; }
     public Calendar getFechaHoraF(){return fechaHoraFin; }
     public String getDiaSemana(){ return diaSemana; }
