@@ -14,7 +14,7 @@ public abstract class Reservador {
         descripcion=desc;
     }
 
-    //geters
+    //getters
     public String getCodigo() { return codigo; }
     public String getDescripcion(){ return descripcion; }
 
