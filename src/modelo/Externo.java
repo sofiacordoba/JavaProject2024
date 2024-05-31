@@ -17,7 +17,7 @@ public class Externo extends Evento {
         org=o;
     }
 
-    //geters
+    //getters
     public double getCobroAl(){ return cobroAlquiler; }
     public String getOrg(){ return org; }
 }
