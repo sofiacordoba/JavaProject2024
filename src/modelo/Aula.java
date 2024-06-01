@@ -32,18 +32,22 @@ public class Aula {
         Calendar finNuevaReserva = (Calendar) fechaHoraNuevo.clone(); // Calcula el tiempo de finalización de la nueva reserva
         finNuevaReserva.add(Calendar.MINUTE, duracionNuevo);
 
-        for (Reserva reservaAct: reservas)
+        Iterator<Reserva> iterador = reservas.iterator(); //auxiliar para recorrer lista, es un iterador,no un contenedor
+        boolean disponible= true; //aumimos que el aula está disponible
+        Reserva reservaAct; //la reserva actual, se usa en el while
+
+        while (iterador.hasNext() && disponible)
         {
+            reservaAct=iterador.next();
             Calendar finReserva = (Calendar) reservaAct.getFechaHora().clone(); // Calcula el tiempo de finalización de la reserva actual
             finReserva.add(Calendar.MINUTE, reservaAct.getDuracion());
 
             // Verifica si la nueva reserva se solapa con la reserva actual
             if (reservaAct.getFechaHora().before(finNuevaReserva) && fechaHoraNuevo.before(finReserva)) // Si hay solapamiento, el aula no está disponible
-            {
-                return false;
-            }
+                disponible = false;
         }
-        return true; // Si no hay solapamiento con ninguna reserva, el aula está disponible
+
+        return disponible;
     }
 
     public boolean capaz (int c) //ve si el aula es capaz de tener determinado numero de personas
@@ -58,23 +62,40 @@ public class Aula {
 
     public void cancelarReserva(int codRes) //cancela una reserva con su código dado
     {
-        Reserva reservaCancelar = null;
-        for (Reserva reservaAct : reservas) //busca la reserva a cancelar
+        Reserva reservaCancelar = null;    //auxiliar que guarda reserva para borrar
+        Iterator<Reserva> iterador = reservas.iterator();  //auxiliar para recorrer lista, es un iterador,no un contenedor
+        Reserva reservaAct; //la reserva actual, se usa en el while
+
+        while (iterador.hasNext() && reservaCancelar == null) //mientras que el actual tenga siguiente y todavía no se encontró la reserva, sigue buscando
         {
-            if(reservaAct.getCodReserva() == codRes)
+            reservaAct=iterador.next();  //va ciclando
+            if (reservaAct.getCodReserva() == codRes) //si lo encuentra, lo asigna para cancelar
             {
                 reservaCancelar = reservaAct;
-                break; //ver si se puede
             }
         }
 
-        if (reservaCancelar != null) //encontró la reserva a cancelar
-        {
-            reservas.remove(reservaCancelar);
-            System.out.println ("Se canceló la reserva " + codRes + " exitosamente."); //NOOOO. try catch
+        try {
+            if (reservaCancelar != null) {    // Si reservaCancelar no es nulo, se elimina la reserva de la lista reservas
+                reservas.remove(reservaCancelar);
+                System.out.println("Se canceló la reserva " + codRes + " exitosamente.");
+            } else {         // Si reservaCancelar es nulo, se lanza una nueva excepción
+                throw new Exception("No se encontró la reserva " + codRes + ".");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
-        else //no encontró la reserva
-            System.out.println("No se encontró la reserva "+ codRes + ".");
+
+/*
+        if (reservaCancelar != null) {
+            try {
+                reservas.remove(reservaCancelar);
+            } catch (Excepcion e) {
+                System.out.println("Error al cancelar reserva: " + e.getMessage());
+            }
+        } else {
+            System.out.println("No se encontró la reserva " + codRes +".");
+        }*/
     }
 
     @Override
