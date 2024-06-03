@@ -7,6 +7,17 @@ public class Main {
 
         List<Aula> aulas = new ArrayList<>();
 
+        //Ejemplo para insertar aula y luego filtrar por piso
+        aulas.add(new Aula(301, 100));
+        aulas.add(new Aula(306, 100));
+        aulas.add(new Aula(201, 100));
+        int piso = 3;
+        List<Aula> aulasEnPiso = buscarAulasPorPiso(aulas, piso);
+        for (Aula aula : aulasEnPiso) {
+            System.out.println(aula.getID());
+            //falta un muestra para todas sus reservas
+        }
+
         //ejemplo prototipo de llamar a cancelarreservaaula
         cancelarReservaAula(aulas, 123, 456);
 
@@ -27,6 +38,21 @@ public class Main {
         else //no encontró el aula
             System.out.println("No se encontró el aula "+ idAula+ ".");
 
+    }
+
+    public static List<Aula> buscarAulasPorPiso(List<Aula> aulas, int piso){ //le paso el piso
+        //private int centena =  aulas.stream().filter(x -> x.getID())
+        //itero sobre todas las aulas y armo un array con las centenas
+
+        List<Aula> aulasEnPiso = new ArrayList<>();
+
+        for(Aula aula: aulas){
+            if(aula.getID() / 100 == piso){
+                aulasEnPiso.add(aula);
+            }
+        }
+
+        return aulasEnPiso;
     }
 
 
