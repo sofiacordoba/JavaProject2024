@@ -1,6 +1,7 @@
 package modelo;
 
 import java.util.*;
+import Excepciones.*;
 
 /** Este es mi primer programa
  * Simplemente escribe la frase "iHola, mundo!"
