@@ -33,8 +33,17 @@ public class Main {
             aulaAct=iterador.next(); //va ciclando
         }
 
-        if (aulaAct != null && aulaAct.getID() == idAula) //si lo encuentra, lo cancela
-            aulaAct.cancelarReserva(codRes);
+       if (aulaAct != null && aulaAct.getID() == idAula) //si lo encuentra, lo cancela
+        {
+            try
+            {
+                aulaAct.cancelarReserva(codRes);
+            }
+            catch (ExcepcionCodNoEncontrado E)
+            {
+                System.out.println(E.getMessage());
+            }
+        }
         else //no encontró el aula
             System.out.println("No se encontró el aula "+ idAula+ ".");
 
