@@ -82,7 +82,7 @@ public class Aula {
             System.out.println("Se canceló la reserva " + codRes + " exitosamente.");
         }
         else 
-            throw new ExcepcionCodNoEncontrado("no se enconró el código " + codRes+".");
+            throw new ExcepcionCodNoEncontrado("No se enconró el código de la reserva " + codRes+".");
 
        
     }
