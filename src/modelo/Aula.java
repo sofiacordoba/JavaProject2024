@@ -74,28 +74,16 @@ public class Aula {
                 reservaCancelar = reservaAct;
             }
         }
-
-        try {
-            if (reservaCancelar != null) {    // Si reservaCancelar no es nulo, se elimina la reserva de la lista reservas
-                reservas.remove(reservaCancelar);
-                System.out.println("Se canceló la reserva " + codRes + " exitosamente.");
-            } else {         // Si reservaCancelar es nulo, se lanza una nueva excepción
-                throw new Exception("No se encontró la reserva " + codRes + ".");
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        
+        if (reservaCancelar != null) // Si reservaCancelar no es nulo, se elimina la reserva de la lista reservas
+        {
+            reservas.remove(reservaCancelar);
+            System.out.println("Se canceló la reserva " + codRes + " exitosamente.");
         }
+        else 
+            throw new ExcepcionCodNoEncontrado("no se enconró el código " + codRes+".");
 
-/*
-        if (reservaCancelar != null) {
-            try {
-                reservas.remove(reservaCancelar);
-            } catch (Excepcion e) {
-                System.out.println("Error al cancelar reserva: " + e.getMessage());
-            }
-        } else {
-            System.out.println("No se encontró la reserva " + codRes +".");
-        }*/
+       
     }
 
     @Override
