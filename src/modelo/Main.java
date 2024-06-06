@@ -46,7 +46,7 @@ public class Main {
             }
         }
         else //no encontró el aula
-            System.out.println("No se encontró el aula "+ idAula+ ".");
+            throw new ExcepcionCodNoEncontrado("No se enconró el código del aula " + codRes+".");
 
     }
 
