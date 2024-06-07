@@ -6,7 +6,7 @@ public class Asignatura extends Reservador {
     //Atributos:
     private Calendar fechaHoraInicio; //fecha de inicio de clases y a qué hora comienza
     private Calendar fechaHoraFin; //fecha de fin de clases y a qué hora termina
-    private String diaSemana;
+    private String diaSemana; //usar ENUM
     private int cantAlumnos;
 
 
