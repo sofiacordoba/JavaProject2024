@@ -15,7 +15,7 @@ public class Main {
         List<Aula> aulasEnPiso = buscarAulasPorPiso(aulas, piso);
         for (Aula aula : aulasEnPiso) {
             System.out.println(aula.getID());
-            //falta un muestra para todas sus reservas
+            //falta un muestra para todas sus reservass
         }
 
         //ejemplo prototipo de llamar a cancelarreservaaula
