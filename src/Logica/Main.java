@@ -1,7 +1,6 @@
-package modelo;
+package Logica;
 
 import java.util.*;
-import Excepciones.*;
 
 public class Main {
     public static void main(String[] args) {
