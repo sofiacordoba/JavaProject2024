@@ -3,7 +3,7 @@ package modelo;
 import java.util.*;
 import Excepciones.*;
 
-/** Este es mi primer programa
+/**  Este es mi primer programa
  * Simplemente escribe la frase "iHola, mundo!"
  * @author Sofia Cordoba
  * @version 1. O
