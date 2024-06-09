@@ -1,4 +1,4 @@
-package modelo;
+package Modelo;
 
 import java.util.*;
 
@@ -9,23 +9,22 @@ import java.util.*;
  */
 
 public class Aula {
-    //Atributos:
     private int ID;
     private int capacidad;
-    private List<Reserva> reservas = new LinkedList<>();
+    private List<Reserva> reservas;
 
-    //Métodos:
 
-    //Constructor
     public Aula (int iden, int cap)
     {
-        ID=iden;
-        capacidad=cap;
+        ID = iden;
+        capacidad = cap;
+        reservas = new ArrayList<>();
     }
 
     //getters
     public int getID(){ return ID; }
     public int getCapacidad(){ return capacidad; }
+    public List<Reserva> getReservas() { return reservas; }
 
     public boolean disponible (Calendar fechaHoraNuevo, int duracionNuevo) //ve si el aula está disponible en determinado día y horario
     {
@@ -74,7 +73,7 @@ public class Aula {
                 reservaCancelar = reservaAct;
             }
         }
-        
+        /*
         if (reservaCancelar != null) // Si reservaCancelar no es nulo, se elimina la reserva de la lista reservas
         {
             reservas.remove(reservaCancelar);
@@ -82,7 +81,7 @@ public class Aula {
         }
         else 
             throw new ExcepcionCodNoEncontrado("No se enconró el código de la reserva " + codRes+".");
-
+*/
        
     }
 

@@ -1,32 +1,26 @@
-package modelo;
+package Modelo;
 
 import java.util.Calendar;
 
 public class Asignatura extends Reservador {
-    //Atributos:
     private Calendar fechaHoraInicio; //fecha de inicio de clases y a qué hora comienza
     private Calendar fechaHoraFin; //fecha de fin de clases y a qué hora termina
     private String diaSemana; //usar ENUM
-    private int cantAlumnos;
+    private int cantidadAlumnos ;
 
-
-    //Métodos:
-
-    //Constructor
-    public Asignatura (Calendar fhi, Calendar fhf, String ds, int cantal, String cod, String desc)
+    public Asignatura (Calendar fhi, Calendar fhf, String ds, int cantal, String codigo, String descripcion)
     {
-        super(cod, desc);
-        fechaHoraInicio=fhi;
-        fechaHoraFin=fhf;
-        diaSemana=ds;
-        cantAlumnos=cantal;
+        super(codigo, descripcion);
+        fechaHoraInicio = fhi;
+        fechaHoraFin = fhf;
+        diaSemana = ds;
+        cantidadAlumnos = cantal ;
     }
 
-    //getters
     public Calendar getFechaHoraI(){return fechaHoraInicio; }
     public Calendar getFechaHoraF(){return fechaHoraFin; }
     public String getDiaSemana(){ return diaSemana; }
-    public int getCantAl(){ return cantAlumnos; }
+    public int getCantAlumnos(){ return cantidadAlumnos; }
 
 }
 

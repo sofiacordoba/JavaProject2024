@@ -1,23 +1,18 @@
-package modelo;
+package Modelo;
 
 public class Curso extends Reservador {
-    //Atributos:
     private int cantAlumnos;
     private int cantClases;
     private double costo;
 
-    //Métodos:
-
-    //Constructor
-    public Curso (int cantal, int cantclas, double c, String cod, String desc)
+    public Curso (int cantal, int cantclas, double c, String codigo, String descripcion)
     {
-        super(cod, desc);
-        cantAlumnos=cantal;
-        cantClases=cantclas;
-        costo=c;
+        super(codigo, descripcion);
+        cantAlumnos = cantal;
+        cantClases = cantclas;
+        costo = c;
     }
 
-    //getters
     public int getCantAl(){ return cantAlumnos; }
     public int getCantClases(){ return cantClases; }
     public double getCosto(){ return costo; }

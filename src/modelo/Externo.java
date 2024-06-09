@@ -1,23 +1,18 @@
-package modelo;
+package Modelo;
 
 import java.util.Calendar;
 
 public class Externo extends Evento {
-    //Atributos:
-    private double cobroAlquiler;
-    private String org;
+    private double costoAlquiler;
+    private String organizacion;
 
-    //Métodos:
-
-    //Constructor
-    public Externo (double ca, String o, Calendar fh, int dur, int cantmax, String cod, String desc)
+    public Externo(String codigo, String descripcion, int maxParticipantes, Calendar fechaHora, int duracion, String org, double costoAl)
     {
-        super(fh, dur, cantmax, cod, desc);
-        cobroAlquiler=ca;
-        org=o;
+        super(codigo, descripcion, maxParticipantes, fechaHora, duracion);
+        costoAlquiler = costoAl;
+        organizacion = org;
     }
 
-    //getters
-    public double getCobroAl(){ return cobroAlquiler; }
-    public String getOrg(){ return org; }
+    public double getCostoAlquiler(){ return costoAlquiler; }
+    public String getOrganizacion(){ return organizacion; }
 }

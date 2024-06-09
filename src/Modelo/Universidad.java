@@ -1,11 +1,46 @@
 package Modelo;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class Universidad {
-    private List<Aula> aulas = new ArrayList<>();
+    private List<Aula> aulas;
+
+    public Universidad() {
+        this.aulas = new ArrayList<>();
+    }
+
+    public List<Aula> getAulas() {
+        return aulas;
+    }
+
+    public void agregarAula(Aula aula) {
+        this.aulas.add(aula);
+    }
+
+    public List<Aula> buscarAulasPorNumeroDePiso(int piso){ //itero sobre todas las aulas y armo un array con las centenas
+        List<Aula> aulasFiltradas = new ArrayList<>();
+        for(Aula aula: aulas){
+            if(aula.getID() / 100 == piso){
+                aulasFiltradas.add(aula);
+            }
+        }
+        return aulasFiltradas;
+    }
+
+    public List<Aula> buscarAulasPorReservador(Reservador reservador){
+        List<Aula> aulasFiltradas = new ArrayList<>();
+        String codigoEntidad = reservador.getCodigo();
+        for(Aula aula: aulas){
+            for(Reserva reserva: aula.getReservas()){
+                if(reserva.getReservador().getCodigo().equals(codigoEntidad)){
+                    aulasFiltradas.add(aula);
+                    break;
+                }
+            }
+        }
+        return aulasFiltradas; //devuelve una lista de aulas reservadas para ese codigo
+    }
+
 
     public void cancelarReservaAula(List<Aula> aulas, int idAula, int codRes) //cancela una reserva en un aula
     {
@@ -22,31 +57,5 @@ public class Universidad {
         else //no encontró el aula
             System.out.println("No se encontró el aula "+ idAula+ ".");
 
-    }
-
-    public List<Aula> buscarAulasPorPiso(List<Aula> aulas, int piso){ //le paso el piso
-        //private int centena =  aulas.stream().filter(x -> x.getID())
-        //itero sobre todas las aulas y armo un array con las centenas
-
-        List<Aula> aulasEnPiso = new ArrayList<>();
-
-        for(Aula aula: aulas){
-            if(aula.getID() / 100 == piso){
-                aulasEnPiso.add(aula);
-            }
-        }
-
-        return aulasEnPiso;
-    }
-
-    public List<Aula> buscarAulasPorCodReserva(List<Reservador> reservadores, String codReservador){
-        List<Reservador> listaReservadores = new ArrayList<>();
-
-        for(Reservador reservador: reservadores){
-            if(reservador.getCodigo().equals(codReservador)){
-                listaReservadores.add(reservador);
-            }
-        }
-        //return listaReservadores; devuelve una lista de aulas reservadas para ese codigo
     }
 }

@@ -2,67 +2,92 @@ package Logica;
 
 import java.util.*;
 
+import Modelo.Aula;
+import Modelo.Universidad;
+import Modelo.Reserva;
+import Modelo.Universidad;
+import Modelo.Asignatura;
+import Modelo.Curso;
+import Modelo.Evento;
+import Modelo.Externo;
+
+
 public class Main {
     public static void main(String[] args) {
 
-        List<Aula> aulas = new ArrayList<>();
+        Universidad universidad = new Universidad();
 
-        //Ejemplo para insertar aula y luego filtrar por piso
-        aulas.add(new Aula(301, 100));
-        aulas.add(new Aula(306, 100));
-        aulas.add(new Aula(201, 100));
-        int piso = 3;
-        List<Aula> aulasEnPiso = buscarAulasPorPiso(aulas, piso);
-        for (Aula aula : aulasEnPiso) {
-            System.out.println(aula.getID());
-            //falta un muestra para todas sus reservass
-        }
+        // Crear y agregar aulas de ejemplo
+        Aula aula1 = new Aula(301, 100);
+        Aula aula2 = new Aula(306, 100);
+        Aula aula3 = new Aula(201, 100);
+        universidad.agregarAula(aula1);
+        universidad.agregarAula(aula2);
+        universidad.agregarAula(aula3);
 
-        //ejemplo prototipo de llamar a cancelarreservaaula
-        cancelarReservaAula(aulas, 123, 456);
 
-    }
+        // Crear y agregar instancias de Asignatura y Curso
+        Calendar fechaInicioAsig = Calendar.getInstance();
+        fechaInicioAsig.set(2024, Calendar.MARCH, 1, 8, 0);
+        Calendar fechaFinAsig = Calendar.getInstance();
+        fechaFinAsig.set(2024, Calendar.JULY, 31, 10, 0);
+        Asignatura asignatura = new Asignatura(fechaInicioAsig, fechaFinAsig, "Lunes", 30, "ASG101", "Matemáticas");
 
-    public static void cancelarReservaAula(List<Aula> aulas, int idAula, int codRes) //cancela una reserva en un aula
-    {
-       Iterator<Aula>iterador = aulas.iterator(); //auxiliar para recorrer lista, es un iterador,no un contenedor
-        Aula aulaAct=iterador.next(); //el aula actual, se usa en el while
+        Curso curso = new Curso(20, 10, 500, "CUR202", "Curso de Java");
 
-        while (iterador.hasNext() && aulaAct.getID() < idAula) //mientras que el actual tenga siguiente y el ID del aula actual sea menor al ID del aula que buscamos
-        {
-            aulaAct=iterador.next(); //va ciclando
-        }
+        // Crear y agregar reservas de ejemplo
+        Calendar fechaReserva1 = Calendar.getInstance();
+        fechaReserva1.set(2024, Calendar.MARCH, 1, 8, 0);
+        Reserva reserva1 = new Reserva(fechaReserva1, 120, asignatura);
 
-       if (aulaAct != null && aulaAct.getID() == idAula) //si lo encuentra, lo cancela
-        {
-            try
-            {
-                aulaAct.cancelarReserva(codRes);
+        Calendar fechaReserva2 = Calendar.getInstance();
+        fechaReserva2.set(2024, Calendar.MARCH, 1, 10, 0);
+        Reserva reserva2 = new Reserva(fechaReserva2, 120, curso);
+
+        aula1.agregarReserva(reserva1);
+        aula2.agregarReserva(reserva2);
+
+        // Crear y agregar eventos
+        Calendar fechaEvento = Calendar.getInstance();
+        fechaEvento.set(2024, Calendar.MARCH, 15, 10, 0);
+        Evento evento = new Evento("EVT303", "Conferencia de Tecnología", 200, fechaEvento, 120);
+        Externo eventoExterno = new Externo("EXT404", "Feria de Empleo", 300, fechaEvento, 180, "TechCorp", 1500);
+
+        // Crear y agregar reservas de eventos
+        Reserva reserva3 = new Reserva(fechaEvento, 120, evento);
+        Reserva reserva4 = new Reserva(fechaEvento, 180, eventoExterno);
+
+        aula1.agregarReserva(reserva3);
+        aula2.agregarReserva(reserva4);
+
+        // Consultar aulas por número de piso
+        List<Aula> aulasPiso3 = universidad.buscarAulasPorNumeroDePiso(3);
+        System.out.println("Aulas en el piso 3: " + aulasPiso3.size());
+
+        for (Aula aula : aulasPiso3) {
+            System.out.println("Aula ID: " + aula.getID());
+            // Mostrar todas sus reservas
+            for (Reserva reserva : aula.getReservas()) {
+                System.out.println("Reserva ID: " + reserva.getCodReserva() + ", Tipo: " + reserva.getReservador().getClass().getSimpleName() + ", Código Entidad: " + reserva.getReservador().getCodigo());
             }
-            catch (ExcepcionCodNoEncontrado E)
-            {
-                System.out.println(E.getMessage());
-            }
-        }
-        else //no encontró el aula
-            throw new ExcepcionCodNoEncontrado("No se enconró el código del aula " + codRes+".");
-
-    }
-
-    public static List<Aula> buscarAulasPorPiso(List<Aula> aulas, int piso){ //le paso el piso
-        //private int centena =  aulas.stream().filter(x -> x.getID())
-        //itero sobre todas las aulas y armo un array con las centenas
-
-        List<Aula> aulasEnPiso = new ArrayList<>();
-
-        for(Aula aula: aulas){
-            if(aula.getID() / 100 == piso){
-                aulasEnPiso.add(aula);
-            }
         }
 
-        return aulasEnPiso;
-    }
+        // Consultar aulas por código de entidad (reservador)
+        List<Aula> aulasAsignatura = universidad.buscarAulasPorReservador(asignatura);
+        System.out.println("Aulas con la asignatura ASG101: " + aulasAsignatura.size());
 
+        List<Aula> aulasCurso = universidad.buscarAulasPorReservador(curso);
+        System.out.println("Aulas con el curso CUR202: " + aulasCurso.size());
+
+        // Consultar aulas por evento
+        List<Aula> aulasEvento = universidad.buscarAulasPorReservador(evento);
+        System.out.println("Aulas con el evento EVT303: " + aulasEvento.size());
+
+        List<Aula> aulasEventoExterno = universidad.buscarAulasPorReservador(eventoExterno);
+        System.out.println("Aulas con el evento externo EXT404: " + aulasEventoExterno.size());
+
+        // Ejemplo prototipo de llamar a cancelar reserva aula
+        //universidad.cancelarReservaAula(301, 1);
+    }
 
 }
