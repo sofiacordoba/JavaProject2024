@@ -39,13 +39,10 @@ public class VentanaPrincipal extends JFrame{
         labelTitulo.setFont(new Font("Arial", Font.BOLD, 20));
         add(labelTitulo, BorderLayout.NORTH);
 
-        // Panel Central con imagen y formulario
+        // Panel Central con formularios
         JPanel panelCentral = new JPanel();
         panelCentral.setLayout(new BoxLayout(panelCentral, BoxLayout.Y_AXIS));
 
-        // Imagen
-        JLabel labelImagen = new JLabel(new ImageIcon("imagen.png"));
-        panelCentral.add(labelImagen, BorderLayout.NORTH);
 
         // Formulario de cancelar reserva
 
