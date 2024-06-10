@@ -10,11 +10,17 @@ import Modelo.Asignatura;
 import Modelo.Curso;
 import Modelo.Evento;
 import Modelo.Externo;
+import InterfazGrafica.VentanaPrincipal;
 
 
 public class Main {
     public static void main(String[] args) {
 
+        Universidad uni = new Universidad();
+        VentanaPrincipal ventana = new VentanaPrincipal(uni);
+        ventana.setVisible(true);
+
+        /*
         Universidad universidad = new Universidad();
 
         // Crear y agregar aulas de ejemplo
@@ -87,7 +93,7 @@ public class Main {
         System.out.println("Aulas con el evento externo EXT404: " + aulasEventoExterno.size());
 
         // Ejemplo prototipo de llamar a cancelar reserva aula
-        //universidad.cancelarReservaAula(301, 1);
+        //universidad.cancelarReservaAula(301, 1);*/
     }
 
 }
