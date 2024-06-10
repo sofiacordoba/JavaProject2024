@@ -1,28 +1,27 @@
-package modelo;
+package Modelo;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.util.Calendar;
 
 public class Evento extends Reservador {
     //Atributos:
-    private LocalDate fecha;
-    private LocalTime horaInicio;
-    private LocalTime horaFin;
+    private Calendar fechaHora; //fecha del evento y hora de inicio
+    private int duracion; //minutos que dura el evento
+    private int cantMaxParticipantes;
 
     //Métodos:
 
     //Constructor
-    public Evento (LocalDate f, LocalTime hi, LocalTime hf, String cod, String desc, int cantpart)
+    public Evento (Calendar fh, int dur, int cantmax, String cod, String desc)
     {
-        super(cod, desc, cantpart);
-        fecha=f;
-        horaInicio=hi;
-        horaFin=hf;
+        super(cod, desc);
+        fechaHora=fh;
+        duracion=dur;
+        cantMaxParticipantes=cantmax;
     }
 
     //getters
-    public LocalDate getFecha(){ return fecha; }
-    public LocalTime getHoraInicio(){ return horaInicio; }
-    public LocalTime getHoraFin(){ return horaFin; }
+    public Calendar getFechaHora(){ return fechaHora; }
+    public int getDuracion(){ return duracion; }
+    public int getCantMax(){ return cantMaxParticipantes; }
 }
 

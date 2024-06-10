@@ -1,36 +1,32 @@
-package modelo;
+package Modelo;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.util.Calendar;
 
 public class Asignatura extends Reservador {
-   //Atributos:
-
-    private LocalDate fechaInicio;
-    private LocalDate fechaFin;
-    private LocalTime horaInicio;
-    private LocalTime horaFin;
+    //Atributos:
+    private Calendar fechaHoraInicio; //fecha de inicio de clases y a qué hora comienza
+    private Calendar fechaHoraFin; //fecha de fin de clases y a qué hora termina
     private String diaSemana;
+    private int cantAlumnos;
+
 
     //Métodos:
 
     //Constructor
-    public Asignatura (LocalDate fi, LocalDate ff, LocalTime hi, LocalTime hf, String ds, String cod, String desc, int cantpart)
+    public Asignatura (Calendar fhi, Calendar fhf, String ds, int cantal, String cod, String desc)
     {
-        super(cod, desc, cantpart);
-        fechaInicio=fi;
-        fechaFin=ff;
-        horaInicio=hi;
-        horaFin=hf;
+        super(cod, desc);
+        fechaHoraInicio=fhi;
+        fechaHoraFin=fhf;
         diaSemana=ds;
+        cantAlumnos=cantal;
     }
 
     //getters
-    public LocalDate getFechaInicio(){ return fechaInicio; }
-    public LocalDate getFechaFin(){ return fechaFin; }
-    public LocalTime getHoraInicio(){ return horaInicio; }
-    public LocalTime getHoraFin(){ return horaFin; }
+    public Calendar getFechaHoraI(){return fechaHoraInicio; }
+    public Calendar getFechaHoraF(){return fechaHoraFin; }
     public String getDiaSemana(){ return diaSemana; }
+    public int getCantAl(){ return cantAlumnos; }
 
 }
 

@@ -1,23 +1,23 @@
-package modelo;
+package Modelo;
 
-public abstract class Reservador {
+import java.io.Serializable;
+
+public abstract class Reservador implements Serializable {
     //Atributos:
     private String codigo;
     private String descripcion;
-    private int cantParticipantes;
 
     //Métodos:
 
     //Constructor
-    public Reservador (String cod, String desc, int cantpart)
+    public Reservador (String cod, String desc)
     {
         codigo=cod;
         descripcion=desc;
-        cantParticipantes=cantpart;
     }
 
     //getters
     public String getCodigo() { return codigo; }
     public String getDescripcion(){ return descripcion; }
-    public int getCantParticipantes(){ return cantParticipantes; }
+
 }

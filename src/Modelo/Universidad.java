@@ -1,9 +1,10 @@
 package Modelo;
 
+import java.io.Serializable;
 import java.util.*;
 import Excepciones.ExcepcionCodNoEncontrado;
 
-public class Universidad {
+public class Universidad implements Serializable {
     private List<Aula> aulas = new ArrayList<>();
     private List<Asignatura> asignaturas = new ArrayList<>();
     private List<Curso> cursos = new ArrayList<>();
