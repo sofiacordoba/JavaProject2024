@@ -3,19 +3,12 @@ package Modelo;
 import java.util.*;
 
 public class Universidad {
-    private List<Aula> aulas;
+    private List<Aula> aulas = new ArrayList<>();
+    private List<Asignatura> asignaturas = new ArrayList<>();
+    private List<Curso> cursos = new ArrayList<>();
+    private List<Evento> eventos = new ArrayList<>();
 
-    public Universidad() {
-        this.aulas = new ArrayList<>();
-    }
-
-    public List<Aula> getAulas() {
-        return aulas;
-    }
-
-    public void agregarAula(Aula aula) {
-        this.aulas.add(aula);
-    }
+    
 
     public List<Aula> buscarAulasPorNumeroDePiso(int piso){ //itero sobre todas las aulas y armo un array con las centenas
         List<Aula> aulasFiltradas = new ArrayList<>();
@@ -42,20 +35,29 @@ public class Universidad {
     }
 
 
-    public void cancelarReservaAula(List<Aula> aulas, int idAula, int codRes) //cancela una reserva en un aula
+    public void cancelarReservaAula(int codAula, int codRes) throws ExcepcionCodNoEncontrado //cancela una reserva en un aula
     {
         Iterator<Aula> iterador = aulas.iterator(); //auxiliar para recorrer lista, es un iterador,no un contenedor
         Aula aulaAct=iterador.next(); //el aula actual, se usa en el while
 
-        while (iterador.hasNext() && aulaAct.getID() < idAula) //mientras que el actual tenga siguiente y el ID del aula actual sea menor al ID del aula que buscamos
+        while (iterador.hasNext() && aulaAct.getID() < codAula) //mientras que el actual tenga siguiente y el cod del aula actual sea menor al cod del aula que buscamos
         {
             aulaAct=iterador.next(); //va ciclando
         }
 
-        if (aulaAct != null && aulaAct.getID() == idAula) //si lo encuentra, lo cancela
-            aulaAct.cancelarReserva(codRes);
+        if (aulaAct != null && aulaAct.getID() == codAula) //si lo encuentra, lo cancela
+        {
+            try
+            {
+                aulaAct.cancelarReserva(codRes);
+            }
+            catch (ExcepcionCodNoEncontrado E)
+            {
+                System.out.println(E.getMessage());
+            }
+        }
         else //no encontró el aula
-            System.out.println("No se encontró el aula "+ idAula+ ".");
+            throw new ExcepcionCodNoEncontrado("No se enconró el código del aula " + codAula +".");
 
     }
 }
