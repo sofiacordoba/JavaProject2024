@@ -1,6 +1,7 @@
 package Modelo;
 
 import java.util.*;
+import Excepciones.ExcepcionCodNoEncontrado;
 
 public class Universidad {
     private List<Aula> aulas = new ArrayList<>();
