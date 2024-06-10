@@ -1,6 +1,7 @@
 package modelo;
 
-import java.util.Calendar;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Externo extends Evento {
     //Atributos:
@@ -10,9 +11,9 @@ public class Externo extends Evento {
     //Métodos:
 
     //Constructor
-    public Externo (double ca, String o, Calendar fh, int dur, int cantmax, String cod, String desc)
+    public Externo (double ca, String o, LocalDate f, LocalTime hi, LocalTime hf, String cod, String desc, int cantpart)
     {
-        super(fh, dur, cantmax, cod, desc);
+        super(f, hi, hf, cod, desc, cantpart);
         cobroAlquiler=ca;
         org=o;
     }
