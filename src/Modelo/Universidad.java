@@ -1,8 +1,11 @@
 package Modelo;
 
-import java.io.Serializable;
-import java.util.*;
 import Excepciones.ExcepcionCodNoEncontrado;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class Universidad implements Serializable {
     private List<Aula> aulas = new ArrayList<>();
@@ -10,7 +13,13 @@ public class Universidad implements Serializable {
     private List<Curso> cursos = new ArrayList<>();
     private List<Evento> eventos = new ArrayList<>();
 
-    
+    // Método para agregar un aula
+    public void agregarAula(Aula aula) { //reportes
+        aulas.add(aula);
+    }
+    public List<Aula> getAulas() { //reportes
+        return aulas;
+    }
 
     public List<Aula> buscarAulasPorNumeroDePiso(int piso){ //itero sobre todas las aulas y armo un array con las centenas
         List<Aula> aulasFiltradas = new ArrayList<>();
@@ -36,8 +45,25 @@ public class Universidad implements Serializable {
         return aulasFiltradas; //devuelve una lista de aulas reservadas para ese codigo
     }
 
-
     public void cancelarReservaAula(int codAula, int codRes) throws ExcepcionCodNoEncontrado //cancela una reserva en un aula
+    {
+        Iterator<Aula> iterador = aulas.iterator(); //auxiliar para recorrer lista, es un iterador, no un contenedor
+        Aula aulaAct = null;
+
+        while (iterador.hasNext()) {
+            aulaAct = iterador.next();
+            if (aulaAct.getID() == codAula) {
+                break;
+            }
+        }
+
+        if (aulaAct != null && aulaAct.getID() == codAula) { //si lo encuentra, lo cancela
+            aulaAct.cancelarReserva(codRes);
+        } else { //no encontró el aula
+            throw new ExcepcionCodNoEncontrado("No se encontró el código del aula " + codAula + ".");
+        }
+    }
+    /*public void cancelarReservaAula(int codAula, int codRes) throws ExcepcionCodNoEncontrado //cancela una reserva en un aula
     {
         Iterator<Aula> iterador = aulas.iterator(); //auxiliar para recorrer lista, es un iterador,no un contenedor
         Aula aulaAct=iterador.next(); //el aula actual, se usa en el while
@@ -60,6 +86,6 @@ public class Universidad implements Serializable {
         }
         else //no encontró el aula
             throw new ExcepcionCodNoEncontrado("No se enconró el código del aula " + codAula +".");
+*/
 
-    }
 }
