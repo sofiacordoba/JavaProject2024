@@ -14,7 +14,7 @@ public class Aula implements Serializable {
     private int ID;
     private int capacidad;
     private List<Reserva> reservas = new LinkedList<>();
-
+    private List<Reserva> reservasAula = new LinkedList<>(); // reportes
     //Métodos:
 
     //Constructor
@@ -27,6 +27,7 @@ public class Aula implements Serializable {
     //getters
     public int getID(){ return ID; }
     public int getCapacidad(){ return capacidad; }
+    public int getCantidadReservas() { return reservasAula.size(); } //reportes
 
     public boolean disponible (Calendar fechaHoraNuevo, int duracionNuevo) //ve si el aula está disponible en determinado día y horario
     {
@@ -105,8 +106,9 @@ public class Aula implements Serializable {
         return "AULA "+ ID +", capacidad máxima: "+ capacidad;
     }
 
-
-
+    public List<Reserva> getReservas() {
+        return reservas;
+    }
 }
 
 

@@ -1,7 +1,7 @@
 package Modelo;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.Calendar;
 
 public class Reserva implements Serializable {
     //Atributos:
@@ -28,6 +28,7 @@ public class Reserva implements Serializable {
     public int getUltReserva(){ return ultimaReserva; }
     public Calendar getFechaHora(){ return fechaHora; }
     public int getDuracion(){ return duracion; }
+    public Reservador getReservador() { return reservador; }
 }
 
 

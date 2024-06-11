@@ -94,6 +94,23 @@ public class Main {
 
         // Ejemplo prototipo de llamar a cancelar reserva aula
         //universidad.cancelarReservaAula(301, 1);*/
+            public static void main(String[] args) {
+                Universidad universidad = new Universidad();
+
+                Aula aula101 = new Aula(101, 30);
+                Aula aula204 = new Aula(204, 50);
+                universidad.agregarAula(aula101);
+                universidad.agregarAula(aula204);
+
+                // Agregar reservas
+                aula101.agregarReserva(new Asignatura("CS101", "Algoritmos", new Date(), new Date(), "Lunes", "10:00-12:00", 25));
+                aula204.agregarReserva(new EventoExterno("EV001", "Conferencia", 100, 500.0, new Date(), "14:00-16:00"));
+
+                // Generar reportes
+                universidad.generarReportes();
+            }
+        }
+
     }
 
 }
