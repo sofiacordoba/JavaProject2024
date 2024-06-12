@@ -20,6 +20,7 @@ public class VentanaPrincipal extends JFrame{
     private JTextField textNomOrg;
     private JTextField textCosto;
     private JTextArea textArea;
+
     public VentanaPrincipal(Universidad uni)
     {
         universidad = uni;
@@ -30,7 +31,7 @@ public class VentanaPrincipal extends JFrame{
     {
         // Configuración de la ventana
         setTitle("Gestión de Reservas");
-        setSize(800, 800);
+        setSize(1000, 1000);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
@@ -43,6 +44,11 @@ public class VentanaPrincipal extends JFrame{
         JPanel panelCentral = new JPanel();
         panelCentral.setLayout(new BoxLayout(panelCentral, BoxLayout.Y_AXIS));
 
+        //barra de scroll
+        panelCentral.setPreferredSize(new Dimension(1000,1000));
+        JScrollPane scrollPane= new JScrollPane();
+        scrollPane.setBounds(5,10,1000,1000);
+        scrollPane.setViewportView(panelCentral);
 
         // Formulario de cancelar reserva
 
@@ -58,7 +64,7 @@ public class VentanaPrincipal extends JFrame{
         botonCancelarReserva.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cancelarReserva();
+                funcionCancelarReserva();
             }
         });
         panelCentral.add(botonCancelarReserva);
@@ -127,10 +133,10 @@ public class VentanaPrincipal extends JFrame{
 
 
     //agregar lo del panel central
-        add(panelCentral, BorderLayout.CENTER);
+        add(scrollPane, BorderLayout.CENTER);
     }
 
-    private void cancelarReserva() {
+    private void funcionCancelarReserva() {
         try {
             int codAula = Integer.parseInt(textCodAulaCancelar.getText());
             int codReserva = Integer.parseInt(textCodReservaCancelar.getText());
@@ -194,11 +200,6 @@ public class VentanaPrincipal extends JFrame{
 
      */
 
-    public static void main(String[] args) {
-        Universidad uni = new Universidad();
-        VentanaPrincipal ventana = new VentanaPrincipal(uni);
-        ventana.setVisible(true);
-    }
 
 }
 

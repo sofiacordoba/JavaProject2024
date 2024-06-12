@@ -3,12 +3,13 @@ package Logica;
 import Modelo.*;
 
 import java.util.Calendar;
+import InterfazGrafica.VentanaPrincipal;
 
 
 public class Main {
     public static void main(String[] args) {
 
-       /* Universidad uni = new Universidad();
+        Universidad uni = new Universidad();
         VentanaPrincipal ventana = new VentanaPrincipal(uni);
         ventana.setVisible(true);
 
