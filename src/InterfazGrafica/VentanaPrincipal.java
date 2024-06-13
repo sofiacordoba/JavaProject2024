@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 
 public class VentanaPrincipal extends JFrame{
     private Universidad universidad;
+    private JTextField textCodConsultaReservador;
     private JTextField textCodAulaCancelar;
     private JTextField textCodReservaCancelar;
     private JTextField textCodAulaReservar;
@@ -20,6 +21,7 @@ public class VentanaPrincipal extends JFrame{
     private JTextField textNomOrg;
     private JTextField textCosto;
     private JTextArea textArea;
+
 
     public VentanaPrincipal(Universidad uni)
     {
@@ -50,26 +52,59 @@ public class VentanaPrincipal extends JFrame{
         scrollPane.setBounds(5,10,1000,1000);
         scrollPane.setViewportView(panelCentral);
 
-        // Formulario de cancelar reserva
-
-        panelCentral.add(new JLabel("-Cancelar Reserva:"));
-        panelCentral.add(new JLabel("   -Cod de Aula:"));
-        textCodAulaCancelar = new JTextField(10);
-        panelCentral.add(textCodAulaCancelar);
-        panelCentral.add(new JLabel("   -Cod de Reserva:"));
-        textCodReservaCancelar = new JTextField(10);
-        panelCentral.add(textCodReservaCancelar);
-        // Botón de cancelar reserva
-        JButton botonCancelarReserva = new JButton("Cancelar Reserva");
-        botonCancelarReserva.addActionListener(new ActionListener() {
+        // Formulario de consultar aulas
+        panelCentral.add(new JLabel("-Consultar datos de aula/s:"));
+        panelCentral.add(new JLabel("   -Por piso:"));
+        // Botón de consultar por planta baja
+        JButton botonConsultarPB = new JButton("Planta baja");
+       /* botonConsultarPB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                funcionCancelarReserva();
+                funcion()
             }
-        });
-        panelCentral.add(botonCancelarReserva);
+        });*/
+        panelCentral.add(botonConsultarPB);
+        // Botón de consultar por piso 1
+        JButton botonConsultarP1 = new JButton("Piso 1");
+       /* botonConsultarP1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                funcion()
+            }
+        });*/
+        panelCentral.add(botonConsultarP1);
+        // Botón de consultar por piso 2
+        JButton botonConsultarP2 = new JButton("Piso 2");
+       /* botonConsultarP2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                funcion()
+            }
+        });*/
+        panelCentral.add(botonConsultarP2);
+        // Botón de consultar por piso 3
+        JButton botonConsultarP3 = new JButton("Piso 3");
+       /* botonConsultarP3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                funcion()
+            }
+        });*/
+        panelCentral.add(botonConsultarP3);
+        panelCentral.add(new JLabel("   -Por código de reservador:"));
+        textCodConsultaReservador = new JTextField(10);
+        panelCentral.add(textCodConsultaReservador);
+        // Botón de consultar por reservador
+        JButton botonConsultarReservador = new JButton("Consultar por reservador");
+       /* botonConsultarReservador.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                funcion()
+            }
+        });*/
+        panelCentral.add(botonConsultarReservador);
 
-        panelCentral.add(new JLabel("                                                                                                                                      *************************************************************************************************"));
+        panelCentral.add(new JLabel("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"));
 
         // Formulario de agregar reserva
         panelCentral.add(new JLabel("-Reservar aula:"));
@@ -131,8 +166,70 @@ public class VentanaPrincipal extends JFrame{
         });*/
         panelCentral.add(botonReservarEventE);
 
+        panelCentral.add(new JLabel("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"));
 
-    //agregar lo del panel central
+        // Formulario de cancelar reserva
+        panelCentral.add(new JLabel("-Cancelar Reserva:"));
+        panelCentral.add(new JLabel("   -Cod de Aula:"));
+        textCodAulaCancelar = new JTextField(10);
+        panelCentral.add(textCodAulaCancelar);
+        panelCentral.add(new JLabel("   -Cod de Reserva:"));
+        textCodReservaCancelar = new JTextField(10);
+        panelCentral.add(textCodReservaCancelar);
+        // Botón de cancelar reserva
+        JButton botonCancelarReserva = new JButton("Cancelar Reserva");
+        botonCancelarReserva.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                funcionCancelarReserva();
+            }
+        });
+        panelCentral.add(botonCancelarReserva);
+
+        panelCentral.add(new JLabel("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"));
+
+        // Formulario de consultar monto
+        panelCentral.add(new JLabel("-Consultar monto recaudado por:"));
+        // Botón de consultar monto por aula
+        JButton botonMontoAula = new JButton("Aula");
+       /* botonMontoAula.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                funcion()
+            }
+        });*/
+        panelCentral.add(botonMontoAula);
+        // Botón de consultar monto por piso
+        JButton botonMontoPiso = new JButton("Piso");
+       /* botonMontoPiso.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                funcion()
+            }
+        });*/
+        panelCentral.add(botonMontoPiso);
+        // Botón de consultar monto por total institución
+        JButton botonMontoTotal = new JButton("Institución (total)");
+       /* botonMontoTotal.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                funcion()
+            }
+        });*/
+        panelCentral.add(botonMontoTotal);
+
+        panelCentral.add(new JLabel("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"));
+        // Botón de consultar cantidad de reservas por aula (y promedio)
+        JButton botonCantRes = new JButton("Consultar cantidad de reservas por aula (y promedio por aula)");
+       /* botonCantRes.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                funcion()
+            }
+        });*/
+        panelCentral.add(botonCantRes);
+
+        //agregar lo del panel central con scroll
         add(scrollPane, BorderLayout.CENTER);
     }
 
