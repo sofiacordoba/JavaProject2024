@@ -2,7 +2,6 @@ package Logica;
 
 import Modelo.*;
 
-import java.util.Calendar;
 import InterfazGrafica.VentanaPrincipal;
 
 
@@ -88,6 +87,7 @@ public class Main {
         // Ejemplo prototipo de llamar a cancelar reserva aula
         //universidad.cancelarReservaAula(301, 1);*/
 
+        /*
                 Universidad universidad = new Universidad(); //reportes
                 // Crear aulas
                 Aula aula1 = new Aula(101, 30);
@@ -125,6 +125,6 @@ public class Main {
 
                 // Guardar reportes en archivo de texto
                 reportes.reporteMontoRecaudadoArchivo(universidad.getAulas(), "reporteMontoRecaudado.txt");
-                reportes.reporteAulasPorReservasArchivo(universidad.getAulas(), "reporteAulasPorReservas.txt");
+                reportes.reporteAulasPorReservasArchivo(universidad.getAulas(), "reporteAulasPorReservas.txt");*/
             }
     }

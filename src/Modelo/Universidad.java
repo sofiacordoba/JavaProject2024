@@ -13,7 +13,8 @@ public class Universidad implements Serializable {
     private List<Curso> cursos = new ArrayList<>();
     private List<Evento> eventos = new ArrayList<>();
 
-    // Método para agregar un aula
+    // Métodos:
+
     public void agregarAula(Aula aula) { //reportes
         aulas.add(aula);
     }
@@ -47,24 +48,6 @@ public class Universidad implements Serializable {
 
     public void cancelarReservaAula(int codAula, int codRes) throws ExcepcionCodNoEncontrado //cancela una reserva en un aula
     {
-        Iterator<Aula> iterador = aulas.iterator(); //auxiliar para recorrer lista, es un iterador, no un contenedor
-        Aula aulaAct = null;
-
-        while (iterador.hasNext()) {
-            aulaAct = iterador.next();
-            if (aulaAct.getID() == codAula) {
-                break;
-            }
-        }
-
-        if (aulaAct != null && aulaAct.getID() == codAula) { //si lo encuentra, lo cancela
-            aulaAct.cancelarReserva(codRes);
-        } else { //no encontró el aula
-            throw new ExcepcionCodNoEncontrado("No se encontró el código del aula " + codAula + ".");
-        }
-    }
-    /*public void cancelarReservaAula(int codAula, int codRes) throws ExcepcionCodNoEncontrado //cancela una reserva en un aula
-    {
         Iterator<Aula> iterador = aulas.iterator(); //auxiliar para recorrer lista, es un iterador,no un contenedor
         Aula aulaAct=iterador.next(); //el aula actual, se usa en el while
 
@@ -86,6 +69,7 @@ public class Universidad implements Serializable {
         }
         else //no encontró el aula
             throw new ExcepcionCodNoEncontrado("No se enconró el código del aula " + codAula +".");
-*/
+
+    }
 
 }

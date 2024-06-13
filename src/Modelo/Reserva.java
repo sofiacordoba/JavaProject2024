@@ -1,34 +1,37 @@
 package Modelo;
 
 import java.io.Serializable;
-import java.util.Calendar;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Reserva implements Serializable {
     //Atributos:
     private int codReserva;
     private static int ultimaReserva = 0;
-    private Calendar fechaHora;//fecha de la reserva y hora de inicio
-    private int duracion; //minutos que dura la reserva
+    private LocalDate fecha;
+    private LocalTime horaInicio;
+    private LocalTime horaFin;
     private Reservador reservador;
-    //tipo de reserva?
 
     //Métodos:
 
     //Constructor
-    public Reserva (Calendar fh, int dur, Reservador res)
+    public Reserva (LocalDate f, LocalTime hi, LocalTime hf, Reservador res)
     {
         codReserva= ++ultimaReserva;
-        fechaHora=fh;
-        duracion=dur;
+        fecha=f;
+        horaInicio=hi;
+        horaFin=hf;
         reservador=res;
     }
 
     //getters
     public int getCodReserva(){ return codReserva; }
     public int getUltReserva(){ return ultimaReserva; }
-    public Calendar getFechaHora(){ return fechaHora; }
-    public int getDuracion(){ return duracion; }
-    public Reservador getReservador() { return reservador; }
+    public LocalDate getFecha(){ return fecha; }
+    public LocalTime getHoraInicio(){ return horaInicio; }
+    public LocalTime getHoraFin(){ return horaFin; }
+    public Reservador getReservador(){return reservador;}
 }
 
 
