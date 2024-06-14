@@ -4,11 +4,28 @@ import Modelo.*;
 
 import InterfazGrafica.VentanaPrincipal;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 
 public class Main {
     public static void main(String[] args) {
 
         Universidad uni = new Universidad();
+
+        //EJEMPLO
+        Aula aula1 = new Aula(301, 100);
+        uni.agregarAula(aula1);
+
+        LocalDate fi = LocalDate.of(2024, 6, 13);
+        LocalDate ff = LocalDate.of(2024, 8, 13);
+        LocalTime hi = LocalTime.of(14, 30, 0);
+        LocalTime hf = LocalTime.of(16, 30, 0);
+        Asignatura asignatura1 = new Asignatura(fi, ff, hi, hf, "Lunes", "ASG101", "Matemáticas", 40);
+
+        Reserva reserva1 = new Reserva(fi,hi,hf, asignatura1);
+        aula1.agregarReserva(reserva1);
+
         VentanaPrincipal ventana = new VentanaPrincipal(uni);
         ventana.setVisible(true);
 

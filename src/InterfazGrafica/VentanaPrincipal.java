@@ -42,6 +42,12 @@ public class VentanaPrincipal extends JFrame{
         labelTitulo.setFont(new Font("Arial", Font.BOLD, 20));
         add(labelTitulo, BorderLayout.NORTH);
 
+        // Área de texto para mensajes
+        textArea = new JTextArea(5, 20);
+        textArea.setEditable(false); //no editable para que solo se use para mensajes
+        add(textArea, BorderLayout.SOUTH);
+        textArea.setText("Área de texto para mensajes");
+
         // Panel Central con formularios
         JPanel panelCentral = new JPanel();
         panelCentral.setLayout(new BoxLayout(panelCentral, BoxLayout.Y_AXIS));
@@ -238,10 +244,11 @@ public class VentanaPrincipal extends JFrame{
             int codAula = Integer.parseInt(textCodAulaCancelar.getText());
             int codReserva = Integer.parseInt(textCodReservaCancelar.getText());
             universidad.cancelarReservaAula(codAula, codReserva);
-            textArea.append("Se canceló la reserva " + codReserva + " en el aula " + codAula + " exitosamente.\n");
-            JOptionPane.showMessageDialog(this, "Reserva cancelada con éxito", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            textArea.setText("Se canceló la reserva " + codReserva + " en el aula " + codAula + " exitosamente.");
         } catch (ExcepcionCodNoEncontrado e) {
-            textArea.append(e.getMessage() + "\n");
+            textArea.setText(e.getMessage());
+        }catch (NumberFormatException e) {
+            textArea.setText("Error: Código de Aula o Código de Reserva no válidos.");
         }
     }
 

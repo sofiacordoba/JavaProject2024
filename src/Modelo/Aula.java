@@ -79,10 +79,7 @@ public class Aula implements Serializable {
         }
 
         if (reservaCancelar != null) // Si reservaCancelar no es nulo, se elimina la reserva de la lista reservas
-        {
             reservas.remove(reservaCancelar);
-            System.out.println("Se canceló la reserva " + codRes + " exitosamente.");
-        }
         else
             throw new ExcepcionCodNoEncontrado("No se enconró el código de la reserva " + codRes+".");
     }

@@ -64,7 +64,7 @@ public class Universidad implements Serializable {
             }
             catch (ExcepcionCodNoEncontrado E)
             {
-                System.out.println(E.getMessage());
+                throw new ExcepcionCodNoEncontrado("No se enconró el código de la reserva " + codRes+".");
             }
         }
         else //no encontró el aula
