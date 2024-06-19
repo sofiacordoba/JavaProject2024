@@ -197,35 +197,15 @@ public class VentanaPrincipal extends JFrame{
 
         panelCentral.add(new JLabel("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"));
 
-        // Formulario de consultar monto
-        panelCentral.add(new JLabel("-Consultar monto recaudado por:"));
-        // Botón de consultar monto por aula
-        JButton botonMontoAula = new JButton("Aula");
-       /* botonMontoAula.addActionListener(new ActionListener() {
+        // Botón de consultar monto por aula, piso y la institución
+        JButton botonMonto = new JButton("Consultar monto recaudado por aulas, pisos y la institución");
+       /* botonMonto.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 funcion()
             }
         });*/
-        panelCentral.add(botonMontoAula);
-        // Botón de consultar monto por piso
-        JButton botonMontoPiso = new JButton("Piso");
-       /* botonMontoPiso.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                funcion()
-            }
-        });*/
-        panelCentral.add(botonMontoPiso);
-        // Botón de consultar monto por total institución
-        JButton botonMontoTotal = new JButton("Institución (total)");
-       /* botonMontoTotal.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                funcion()
-            }
-        });*/
-        panelCentral.add(botonMontoTotal);
+        panelCentral.add(botonMonto);
 
         panelCentral.add(new JLabel("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"));
         // Botón de consultar cantidad de reservas por aula (y promedio)

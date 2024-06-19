@@ -40,6 +40,16 @@ public class Main {
         Curso curso1 = new Curso(8, 695.3, "CUR201", "Matemáticas", 20);
         uni.agregarCurso(curso1);
 
+/*
+        // Crear reportes
+        Reportes reportes = new Reportes();
+        reportes.reporteMontoRecaudadoPantalla(uni.getAulas());
+        reportes.reporteAulasPorReservasPantalla(uni.getAulas());
+
+        // Guardar reportes en archivo de texto
+        reportes.reporteMontoRecaudadoArchivo(uni.getAulas(), "reporteMontoRecaudado.txt");
+        reportes.reporteAulasPorReservasArchivo(uni.getAulas(), "reporteAulasPorReservas.txt");*/
+
         VentanaPrincipal ventana = new VentanaPrincipal(uni);
         ventana.setVisible(true);
 
