@@ -2,6 +2,9 @@ package InterfazGrafica;
 
 import Modelo.Universidad;
 import Excepciones.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 
 import javax.swing.*;
 import java.awt.*;
@@ -146,12 +149,12 @@ public class VentanaPrincipal extends JFrame{
         panelCentral.add(botonReservarAsig);
         // Botón de agregar reserva para curso
         JButton botonReservarCurso = new JButton("Reservar aula para curso");
-       /* botonReservarCurso.addActionListener(new ActionListener() {
+        botonReservarCurso.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                agregarReservaCurso()
+                funcionAgregarReservaCurso();
             }
-        });*/
+        });
         panelCentral.add(botonReservarCurso);
         // Botón de agregar reserva para evento interno
         JButton botonReservarEventI = new JButton("Reservar aula para evento interno");
@@ -267,19 +270,30 @@ public class VentanaPrincipal extends JFrame{
         }
     }
 
-    /*
-
-    private void agregarReservaCurso() {
+    private void funcionAgregarReservaCurso() {
         try {
-            int codAula = Integer.parseInt(textCodAulaCancelar.getText());
-            int codReserva = Integer.parseInt(textCodReservaCancelar.getText());
-            universidad.cancelarReservaAula(codAula, codReserva);
-            textArea.append("Se canceló la reserva " + codReserva + " en el aula " + codAula + " exitosamente.\n");
-            JOptionPane.showMessageDialog(this, "Reserva cancelada con éxito", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            int codAula = Integer.parseInt(textCodAulaReservar.getText());
+            String codReservador = textCodReservador.getText();
+            String textoFecha = textFecha.getText();
+            LocalDate fecha = LocalDate.parse(textoFecha);
+            String textoHoraI = textHoraI.getText();
+            LocalTime horaI = LocalTime.parse(textoHoraI);
+            String textoHoraF = textHoraF.getText();
+            LocalTime horaF = LocalTime.parse(textoHoraF);
+            universidad.agregarReservaCursoAula(codAula, codReservador,fecha,horaI,horaF);
+            textArea.setText("Se registró la reserva del curso " + codReservador + " en el aula " + codAula + " exitosamente.");
         } catch (ExcepcionCodNoEncontrado e) {
-            textArea.append(e.getMessage() + "\n");
+            textArea.setText(e.getMessage());
+        } catch (DateTimeParseException e) {
+            textArea.setText("Error: Formato de fecha u hora no válido");
+        } catch (NumberFormatException e) {
+            textArea.setText("Error: Código de Aula o Código de Reservador no válidos.");
+        } catch (ExcepcionNoReservar e) {
+            textArea.setText(e.getMessage());
         }
     }
+
+    /*
 
     private void agregarReservaEventoI() {
         try {

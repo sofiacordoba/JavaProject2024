@@ -94,6 +94,41 @@ public class Aula implements Serializable {
             throw new ExcepcionNoReservar("No se puede reservar el aula.");
     }
 
+    public void agregarReservaCurso(Curso curso, LocalDate fecha, LocalTime horaI, LocalTime horaF) throws ExcepcionNoReservar //agrega una reserva de curso
+    {
+        if (capaz(curso.getCantParticipantes() ))
+        {
+            List<LocalDate> fechasDeClases = curso.obtenerFechasDeClase(fecha);
+
+            Iterator<LocalDate> iterador = fechasDeClases.iterator(); //auxiliar para recorrer lista, es un iterador,no un contenedor
+            LocalDate fechaAct; //la fecha actual actual, se usa en el while
+
+            boolean dispo=true;
+
+            while (iterador.hasNext() && dispo) //mientras que el actual tenga siguiente y las fechas analizadas estén disponibles
+            {
+                fechaAct=iterador.next(); //va ciclando
+                dispo= disponible(fechaAct, horaI, horaF); //ve si está disponible
+            }
+
+            if (dispo) //si se puede reservar en todos los horarios, reserva el curso
+            {
+                iterador = fechasDeClases.iterator();// Reiniciar el iterador para recorrer la lista desde el comienzo
+
+                while (iterador.hasNext()) {
+                    fechaAct = iterador.next();
+                    Reserva reserva = new Reserva(fechaAct, horaI, horaF, curso);
+                    agregarReserva(reserva);
+                }
+
+            }
+            else
+                throw new ExcepcionNoReservar("No se puede reservar el aula.");
+
+        }
+        else
+            throw new ExcepcionNoReservar("No se puede reservar el aula.");
+    }
 
     public void agregarReserva(Reserva reserva) //agrega reserva, no ordenado
     {

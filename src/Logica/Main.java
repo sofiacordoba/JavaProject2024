@@ -34,8 +34,15 @@ public class Main {
         Asignatura asignatura2 = new Asignatura(fi, ff, hi, hf, "Martes", "ASG102", "FÍSICA", 40);
         uni.agregarAsignatura(asignatura2);
 
+        Aula aula2 = new Aula(302, 100);
+        uni.agregarAula(aula2);
+
+        Curso curso1 = new Curso(8, 695.3, "CUR201", "Matemáticas", 20);
+        uni.agregarCurso(curso1);
+
         VentanaPrincipal ventana = new VentanaPrincipal(uni);
         ventana.setVisible(true);
+
 
         /*
         Universidad universidad = new Universidad();

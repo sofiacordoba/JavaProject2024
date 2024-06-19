@@ -3,9 +3,9 @@ package Modelo;
 import Excepciones.*;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Universidad implements Serializable {
     private List<Aula> aulas = new ArrayList<>();
@@ -111,8 +111,44 @@ public class Universidad implements Serializable {
             throw new ExcepcionCodNoEncontrado("No se enconró el código de la asignatura " + codReservador +".");
     }
 
+    public void agregarReservaCursoAula(int codAula, String codReservador, LocalDate fecha, LocalTime horaI, LocalTime horaF) throws ExcepcionCodNoEncontrado, ExcepcionNoReservar //agrega una reserva de curso en un aula
+    {
+        Iterator<Curso> iteradorCurso = cursos.iterator(); //auxiliar para recorrer lista, es un iterador,no un contenedor
+        Curso cursoAct=iteradorCurso.next(); //lel curso actual, se usa en el while
+
+        while (iteradorCurso.hasNext() && !cursoAct.getCodigo().equals(codReservador)) //mientras que el actual tenga siguiente y el cod del curso actual no sea igual al cod del curso que buscamos
+        {
+            cursoAct=iteradorCurso.next(); //va ciclando
+        }
+
+        if (cursoAct != null && cursoAct.getCodigo().equals(codReservador)) //si la encuentra, trata de ver si se puede reservar
+        {
+            Aula aulaAct=buscarAula(codAula);
+
+            if (aulaAct != null && aulaAct.getID() == codAula) //si lo encuentra, ve si puede reservar
+            {
+                try
+                {
+                    aulaAct.agregarReservaCurso(cursoAct, fecha, horaI, horaF);
+                }
+                catch (ExcepcionNoReservar E)
+                {
+                    throw new ExcepcionNoReservar("No se puede reservar el curso.");
+                }
+            }
+            else //no encontró el aula
+                throw new ExcepcionCodNoEncontrado("No se enconró el código del aula " + codAula +".");
+
+        }
+        else //no encontró el curso
+            throw new ExcepcionCodNoEncontrado("No se enconró el código del curso " + codReservador +".");
+    }
+
     public void agregarAsignatura(Asignatura asig) {
         asignaturas.add(asig);
+    }
+    public void agregarCurso(Curso curso) {
+        cursos.add(curso);
     }
 
 }
