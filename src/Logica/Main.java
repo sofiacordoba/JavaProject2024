@@ -22,9 +22,17 @@ public class Main {
         LocalTime hi = LocalTime.of(14, 30, 0);
         LocalTime hf = LocalTime.of(16, 30, 0);
         Asignatura asignatura1 = new Asignatura(fi, ff, hi, hf, "Lunes", "ASG101", "Matemáticas", 40);
+        uni.agregarAsignatura(asignatura1);
 
         Reserva reserva1 = new Reserva(fi,hi,hf, asignatura1);
         aula1.agregarReserva(reserva1);
+
+        fi = LocalDate.of(2024, 6, 13);
+        ff = LocalDate.of(2024, 8, 13);
+        hi = LocalTime.of(14, 30, 0);
+        hf = LocalTime.of(16, 30, 0);
+        Asignatura asignatura2 = new Asignatura(fi, ff, hi, hf, "Martes", "ASG102", "FÍSICA", 40);
+        uni.agregarAsignatura(asignatura2);
 
         VentanaPrincipal ventana = new VentanaPrincipal(uni);
         ventana.setVisible(true);

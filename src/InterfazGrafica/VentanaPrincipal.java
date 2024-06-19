@@ -1,7 +1,7 @@
 package InterfazGrafica;
 
 import Modelo.Universidad;
-import Excepciones.ExcepcionCodNoEncontrado;
+import Excepciones.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -137,12 +137,12 @@ public class VentanaPrincipal extends JFrame{
         panelCentral.add(textCosto);
         // Botón de agregar reserva para asignatura
         JButton botonReservarAsig = new JButton("Reservar aula para asignatura");
-       /* botonReservarAsig.addActionListener(new ActionListener() {
+        botonReservarAsig.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                agregarReservaAsig()
+                funcionAgregarReservaAsig();
             }
-        });*/
+        });
         panelCentral.add(botonReservarAsig);
         // Botón de agregar reserva para curso
         JButton botonReservarCurso = new JButton("Reservar aula para curso");
@@ -252,18 +252,22 @@ public class VentanaPrincipal extends JFrame{
         }
     }
 
-    /*
-    private void agregarReservaAsig() {
+    private void funcionAgregarReservaAsig() {
         try {
-            int codAula = Integer.parseInt(textCodAulaCancelar.getText());
-            int codReserva = Integer.parseInt(textCodReservaCancelar.getText());
-            universidad.cancelarReservaAula(codAula, codReserva);
-            textArea.append("Se canceló la reserva " + codReserva + " en el aula " + codAula + " exitosamente.\n");
-            JOptionPane.showMessageDialog(this, "Reserva cancelada con éxito", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            int codAula = Integer.parseInt(textCodAulaReservar.getText());
+            String codReservador = textCodReservador.getText();
+            universidad.agregarReservaAsigAula(codAula, codReservador);
+            textArea.setText("Se registró la reserva de la asignatura " + codReservador + " en el aula " + codAula + " exitosamente.");
         } catch (ExcepcionCodNoEncontrado e) {
-            textArea.append(e.getMessage() + "\n");
+            textArea.setText(e.getMessage());
+        } catch (NumberFormatException e) {
+            textArea.setText("Error: Código de Aula o Código de Reservador no válidos.");
+        } catch (ExcepcionNoReservar e) {
+            textArea.setText(e.getMessage());
         }
     }
+
+    /*
 
     private void agregarReservaCurso() {
         try {

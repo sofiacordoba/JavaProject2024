@@ -1,5 +1,6 @@
 package Modelo;
 
+import java.util.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -32,6 +33,18 @@ public class Asignatura extends Reservador {
     public LocalTime getHoraInicio(){ return horaInicio; }
     public LocalTime getHoraFin(){ return horaFin; }
     public String getDiaSemana(){ return diaSemana; }
+
+    public List<LocalDate> obtenerFechasDeClase() {  //lista de las fechas de cada clase
+        List<LocalDate> fechasDeClase = new ArrayList<>();
+        LocalDate fecha = fechaInicio;
+
+        // Agregar las fechas de clase a la lista
+        while (!fecha.isAfter(fechaFin)) {
+            fechasDeClase.add(fecha);
+            fecha = fecha.plusDays(7);
+        }
+        return fechasDeClase;
+    }
 
 }
 

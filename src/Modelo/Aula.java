@@ -1,6 +1,6 @@
 package Modelo;
 
-import Excepciones.ExcepcionCodNoEncontrado;
+import Excepciones.*;
 
 import java.io.Serializable;
 import java.util.*;
@@ -57,6 +57,43 @@ public class Aula implements Serializable {
     {
         return c <= capacidad;
     }
+
+    public void agregarReservaAsig (Asignatura asig) throws ExcepcionNoReservar  //agrega una reserva de asignatura
+    {
+        if (capaz(asig.getCantParticipantes() ))
+        {
+            List<LocalDate> fechasDeClases = asig.obtenerFechasDeClase();
+
+            Iterator<LocalDate> iterador = fechasDeClases.iterator(); //auxiliar para recorrer lista, es un iterador,no un contenedor
+            LocalDate fechaAct; //la fecha actual actual, se usa en el while
+
+            boolean dispo=true;
+
+            while (iterador.hasNext() && dispo) //mientras que el actual tenga siguiente y las fechas analizadas estén disponibles
+            {
+                fechaAct=iterador.next(); //va ciclando
+                dispo= disponible(fechaAct, asig.getHoraInicio(), asig.getHoraFin()); //ve si está disponible
+            }
+
+            if (dispo) //si se puede reservar en todos los horarios, reserva la asignatura
+            {
+                iterador = fechasDeClases.iterator();// Reiniciar el iterador para recorrer la lista desde el comienzo
+
+                while (iterador.hasNext()) {
+                    fechaAct = iterador.next();
+                    Reserva reserva = new Reserva(fechaAct, asig.getHoraInicio(), asig.getHoraFin(), asig);
+                    agregarReserva(reserva);
+                }
+
+            }
+            else
+                throw new ExcepcionNoReservar("No se puede reservar el aula.");
+
+        }
+        else
+            throw new ExcepcionNoReservar("No se puede reservar el aula.");
+    }
+
 
     public void agregarReserva(Reserva reserva) //agrega reserva, no ordenado
     {

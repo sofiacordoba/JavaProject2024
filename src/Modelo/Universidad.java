@@ -1,6 +1,6 @@
 package Modelo;
 
-import Excepciones.ExcepcionCodNoEncontrado;
+import Excepciones.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -14,6 +14,18 @@ public class Universidad implements Serializable {
     private List<Evento> eventos = new ArrayList<>();
 
     // Métodos:
+
+    public Aula buscarAula(int codAula)
+    {
+        Iterator<Aula> iterador = aulas.iterator(); //auxiliar para recorrer lista, es un iterador,no un contenedor
+        Aula aulaAct=iterador.next(); //el aula actual, se usa en el while
+
+        while (iterador.hasNext() && aulaAct.getID() < codAula) //mientras que el actual tenga siguiente y el cod del aula actual sea menor al cod del aula que buscamos
+        {
+            aulaAct=iterador.next(); //va ciclando
+        }
+        return aulaAct;
+    }
 
     public void agregarAula(Aula aula) { //reportes
         aulas.add(aula);
@@ -48,13 +60,7 @@ public class Universidad implements Serializable {
 
     public void cancelarReservaAula(int codAula, int codRes) throws ExcepcionCodNoEncontrado //cancela una reserva en un aula
     {
-        Iterator<Aula> iterador = aulas.iterator(); //auxiliar para recorrer lista, es un iterador,no un contenedor
-        Aula aulaAct=iterador.next(); //el aula actual, se usa en el while
-
-        while (iterador.hasNext() && aulaAct.getID() < codAula) //mientras que el actual tenga siguiente y el cod del aula actual sea menor al cod del aula que buscamos
-        {
-            aulaAct=iterador.next(); //va ciclando
-        }
+        Aula aulaAct=buscarAula(codAula);
 
         if (aulaAct != null && aulaAct.getID() == codAula) //si lo encuentra, lo cancela
         {
@@ -70,6 +76,43 @@ public class Universidad implements Serializable {
         else //no encontró el aula
             throw new ExcepcionCodNoEncontrado("No se enconró el código del aula " + codAula +".");
 
+    }
+
+    public void agregarReservaAsigAula(int codAula, String codReservador) throws ExcepcionCodNoEncontrado, ExcepcionNoReservar //agrega una reserva de asignatura en un aula
+    {
+        Iterator<Asignatura> iteradorAsig = asignaturas.iterator(); //auxiliar para recorrer lista, es un iterador,no un contenedor
+        Asignatura asigAct=iteradorAsig.next(); //la asignatura actual actual, se usa en el while
+
+        while (iteradorAsig.hasNext() && !asigAct.getCodigo().equals(codReservador)) //mientras que el actual tenga siguiente y el cod de la asignatura actual no sea igual al cod del asignatura que buscamos
+        {
+            asigAct=iteradorAsig.next(); //va ciclando
+        }
+
+        if (asigAct != null && asigAct.getCodigo().equals(codReservador)) //si la encuentra, trata de ver si se puede reservar
+        {
+            Aula aulaAct=buscarAula(codAula);
+
+            if (aulaAct != null && aulaAct.getID() == codAula) //si lo encuentra, ve si puede reservar
+            {
+                try
+                {
+                    aulaAct.agregarReservaAsig(asigAct);
+                }
+                catch (ExcepcionNoReservar E)
+                {
+                    throw new ExcepcionNoReservar("No se puede reservar el aula.");
+                }
+            }
+            else //no encontró el aula
+                throw new ExcepcionCodNoEncontrado("No se enconró el código del aula " + codAula +".");
+
+        }
+        else //no encontró la asignatura
+            throw new ExcepcionCodNoEncontrado("No se enconró el código de la asignatura " + codReservador +".");
+    }
+
+    public void agregarAsignatura(Asignatura asig) {
+        asignaturas.add(asig);
     }
 
 }
