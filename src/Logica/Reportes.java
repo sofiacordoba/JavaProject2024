@@ -118,7 +118,9 @@ public class Reportes {
                 writer.newLine();
             }
 
-            double promedioReservas = (double) totalReservas;
+            double promedioReservas = (double) totalReservas / aulas.size();;
+            writer.write("Promedio de reservas por aula: " + promedioReservas);
+            writer.newLine();
         }catch (IOException e) {
             e.printStackTrace();
         }
