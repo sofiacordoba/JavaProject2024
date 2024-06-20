@@ -159,7 +159,16 @@ public class Aula implements Serializable {
     @Override
     public String toString() //sobreescrito toString
     {
-        return "AULA "+ ID +", capacidad máxima: "+ capacidad;
+        return "ID de aula: "+ ID +"\n Capacidad máxima: "+ capacidad + "\n Reservas: \n" + mostrarReservas();
+    }
+
+    public String mostrarReservas()
+    {
+        StringBuilder sb = new StringBuilder();
+        for (Reserva resAct : reservas) {
+            sb.append(resAct.toString()).append("\n");
+        }
+        return sb.toString();
     }
 
     public List<Reserva> getReservas() {

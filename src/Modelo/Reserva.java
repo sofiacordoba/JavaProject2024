@@ -32,6 +32,12 @@ public class Reserva implements Serializable {
     public LocalTime getHoraInicio(){ return horaInicio; }
     public LocalTime getHoraFin(){ return horaFin; }
     public Reservador getReservador(){return reservador;}
+
+    @Override
+    public String toString() //sobreescrito toString
+    {
+        return " Codigo de reserva: "+ codReserva +"\n Fecha: "+ fecha.toString()+"\n Hora de inicio: "+ horaInicio.toString()+"\n Hora de finalización: "+ horaFin.toString();
+    }
 }
 
 

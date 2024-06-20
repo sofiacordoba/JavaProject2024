@@ -29,16 +29,22 @@ public class Main {
 
         fi = LocalDate.of(2024, 6, 13);
         ff = LocalDate.of(2024, 8, 13);
-        hi = LocalTime.of(14, 30, 0);
-        hf = LocalTime.of(16, 30, 0);
+        hi = LocalTime.of(18, 30, 0);
+        hf = LocalTime.of(19, 30, 0);
         Asignatura asignatura2 = new Asignatura(fi, ff, hi, hf, "Martes", "ASG102", "FÍSICA", 40);
         uni.agregarAsignatura(asignatura2);
+
+        Reserva reserva2 = new Reserva(fi,hi,hf, asignatura2);
+        aula1.agregarReserva(reserva2);
 
         Aula aula2 = new Aula(302, 100);
         uni.agregarAula(aula2);
 
         Curso curso1 = new Curso(8, 695.3, "CUR201", "Matemáticas", 20);
         uni.agregarCurso(curso1);
+
+        System.out.println(aula1.toString());
+
 
 /*
         // Crear reportes
