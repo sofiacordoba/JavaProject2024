@@ -32,9 +32,12 @@ public class Universidad implements Serializable {
         return aulaAct;
     }
 
-    public void agregarAula(Aula aula) { //reportes
+    // Ordenar la lista de aulas por ID en orden descendente
+    public void agregarAula(Aula aula) {
         aulas.add(aula);
+        aulas.sort((a1, a2) -> Integer.compare(a2.getID(), a1.getID()));
     }
+
     public List<Aula> getAulas() { //reportes
         return aulas;
     }

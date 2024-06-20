@@ -12,7 +12,7 @@ import java.time.LocalTime;
  * @author Sofia Cordoba, Tatiana Malano Merlino, Josefina Garriz Scarpelli
  */
 
-public class Aula implements Serializable {
+public class Aula implements Serializable, Comparable<Aula> {
     //Atributos:
     private int ID;
     private int capacidad;
@@ -189,6 +189,13 @@ public class Aula implements Serializable {
             reservas.remove(reservaCancelar);
         else
             throw new ExcepcionCodNoEncontrado("No se enconró el código de la reserva " + codRes+".");
+    }
+
+    // Implementación del método compareTo para orden descendente por ID
+    @Override
+    public int compareTo(Aula otraAula) {
+        // Ordenar por ID en orden descendente
+        return Integer.compare(otraAula.ID, this.ID);
     }
 
     @Override

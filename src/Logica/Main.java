@@ -56,7 +56,9 @@ public class Main {
         Externo externo1 = new Externo(500.0, "Tech Corp", LocalDate.of(2024, 6, 13), LocalTime.of(15, 0), LocalTime.of(16, 0), "EVE001", "Exposición de Innovación", 80);
         uni.agregarExterno(externo1);
 
-        /*
+        Reserva reserva3 = new Reserva(fi,hi,hf, externo1);
+        aula2.agregarReserva(reserva3);
+
 
         System.out.println(aula1.toString());
 
@@ -67,7 +69,7 @@ public class Main {
 
         // Guardar reportes en archivo de texto
         reportes.reporteMontoRecaudadoArchivo(uni.getAulas(), "reporteMontoRecaudado.txt");
-        reportes.reporteAulasPorReservasArchivo(uni.getAulas(), "reporteAulasPorReservas.txt");*/
+        reportes.reporteAulasPorReservasArchivo(uni.getAulas(), "reporteAulasPorReservas.txt");
 
 
         VentanaPrincipal ventana = new VentanaPrincipal(uni);
