@@ -249,6 +249,4 @@ public class Universidad implements Serializable {
         eventos.add(externo);
     }
 
-
-
 }
