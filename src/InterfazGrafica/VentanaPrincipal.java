@@ -11,6 +11,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/** La clase VentanaPrincipal es la interfaz gráfica del usuario.
+ * Acá el usuario interactúa con el sistema.
+ * @author Sofia Cordoba, Tatiana Malano Merlino, Josefina Garriz Scarpelli
+ */
+
 public class VentanaPrincipal extends JFrame{
     private Universidad universidad;
     private JTextField textCodConsultaReservador;

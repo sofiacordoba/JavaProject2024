@@ -4,6 +4,10 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+/** La clase Reserva representa una reserva que existe dento de un aula.
+ * @author Sofia Cordoba, Tatiana Malano Merlino, Josefina Garriz Scarpelli
+ */
+
 public class Reserva implements Serializable {
     //Atributos:
     private int codReserva;

@@ -4,6 +4,11 @@ import java.util.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+/** La clase Asignatura representa una asignatura que existe dento de la universidad.
+ * Puede realizar reservas de aulas.
+ * @author Sofia Cordoba, Tatiana Malano Merlino, Josefina Garriz Scarpelli
+ */
+
 public class Asignatura extends Reservador {
     //Atributos:
 

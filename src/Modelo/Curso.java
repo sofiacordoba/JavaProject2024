@@ -4,6 +4,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/** La clase Curso representa un curso que existe dento de la universidad.
+ * Puede realizar reservas de aulas.
+ * @author Sofia Cordoba, Tatiana Malano Merlino, Josefina Garriz Scarpelli
+ */
+
 public class Curso extends Reservador {
     //Atributos:
     private int cantClases;

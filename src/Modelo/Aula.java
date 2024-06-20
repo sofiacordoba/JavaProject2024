@@ -7,10 +7,9 @@ import java.util.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-/** Este es mi primer programa
- * Simplemente escribe la frase "iHola, mundo!"
- * @author Sofia Cordoba
- * @version 1. O
+/** La clase Aula representa un aula que puede tener varias reservas.
+ * Principalmente proporciona métodos para agregar y cancelar reservas.
+ * @author Sofia Cordoba, Tatiana Malano Merlino, Josefina Garriz Scarpelli
  */
 
 public class Aula implements Serializable {

@@ -7,6 +7,10 @@ import InterfazGrafica.VentanaPrincipal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+/** La clase Main.
+ * Une al dominio con la interfaz gráfica
+ * @author Sofia Cordoba, Tatiana Malano Merlino, Josefina Garriz Scarpelli
+ */
 
 public class Main {
     public static void main(String[] args) {
@@ -43,10 +47,10 @@ public class Main {
         Curso curso1 = new Curso(8, 695.3, "CUR201", "Matemáticas", 20);
         uni.agregarCurso(curso1);
 
+        /*
+
         System.out.println(aula1.toString());
 
-
-/*
         // Crear reportes
         Reportes reportes = new Reportes();
         reportes.reporteMontoRecaudadoPantalla(uni.getAulas());

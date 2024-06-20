@@ -9,6 +9,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/** La clase Reportes genera reportes por pantalla y por archivo de texto.
+ * @author Sofia Cordoba, Tatiana Malano Merlino, Josefina Garriz Scarpelli
+ */
+
 public class Reportes {
     public void reporteMontoRecaudadoPantalla(List<Aula> aulas) {
         double totalInstitucion = 0;

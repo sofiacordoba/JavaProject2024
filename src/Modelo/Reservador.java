@@ -2,6 +2,11 @@ package Modelo;
 
 import java.io.Serializable;
 
+/** La clase Reservador representa una asignatura, un curso o un evento.
+ * Es abstracta.
+ * @author Sofia Cordoba, Tatiana Malano Merlino, Josefina Garriz Scarpelli
+ */
+
 public abstract class Reservador implements Serializable {
     //Atributos:
     private String codigo;

@@ -7,6 +7,11 @@ import java.util.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+/** La clase Universidad representa a la universidad del sistema.
+ * Principalmente proporciona métodos para buscar aulas, agregar y cancelar reservas.
+ * @author Sofia Cordoba, Tatiana Malano Merlino, Josefina Garriz Scarpelli
+ */
+
 public class Universidad implements Serializable {
     private List<Aula> aulas = new ArrayList<>();
     private List<Asignatura> asignaturas = new ArrayList<>();

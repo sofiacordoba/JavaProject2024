@@ -3,6 +3,12 @@ package Modelo;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+/** La clase Evento representa un evento que existe dento de la universidad.
+ * Puede realizar reservas de aulas.
+ * Puede ser externo y derivado de la subclase Externo, si no es externo, es interno y no se deriva a ninguna subclase.
+ * @author Sofia Cordoba, Tatiana Malano Merlino, Josefina Garriz Scarpelli
+ */
+
 public class Evento extends Reservador {
     //Atributos:
     private LocalDate fecha;
