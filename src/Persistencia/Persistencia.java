@@ -2,6 +2,11 @@ package Persistencia;
 
 import Modelo.*;
 import java.io.FileOutputStream;
+import java.io.FileInputStream;
+import java.io.ObjectOutputStream;
+import java.io.ObjectInputStream;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /** La clase Persistencia se usa para cargar los datos del sistema.
  * @author Sofia Cordoba, Tatiana Malano Merlino, Josefina Garriz Scarpelli
@@ -13,7 +18,7 @@ public class Persistencia {
         try {
             FileOutputStream file = new FileOutputStream("Universidad.dat");
             ObjectOutputStream objectOut = new ObjectOutputStream(file);
-            ObjectOut.writeObject(universidad);
+            objectOut.writeObject(universidad);
             objectOut.close();
             file.close();
         } catch(Exception ex) {
@@ -91,7 +96,8 @@ public class Persistencia {
         if(result) {
             Universidad uni2 = DeserializarUniversidad();
             if (uni2 != null) {
-                System.out.println(uni2.ToString());
+                //System.out.println(uni2.ToString());
+                System.out.println("Exitosoooo");
             }
         }
     }
