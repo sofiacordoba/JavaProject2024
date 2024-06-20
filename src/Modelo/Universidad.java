@@ -32,10 +32,19 @@ public class Universidad implements Serializable {
         return aulaAct;
     }
 
-    // Ordenar la lista de aulas por ID en orden descendente
-    public void agregarAula(Aula aula) {
-        aulas.add(aula);
-        aulas.sort((a1, a2) -> Integer.compare(a2.getID(), a1.getID()));
+    public void agregarAula(Aula aulaNueva) {
+        aulas.add(aulaNueva);
+        Collections.sort(aulas, (a1, a2) -> Integer.compare(a1.getID(), a2.getID()));
+    }
+
+    // Método privado para ordenar las aulas en orden descendente por ID
+    private void ordenarAulasDescendentemente() {
+        Collections.sort(aulas, new Comparator<Aula>() {
+            @Override
+            public int compare(Aula a1, Aula a2) {
+                return Integer.compare(a2.getID(), a1.getID()); // Orden descendente por ID
+            }
+        });
     }
 
     public List<Aula> getAulas() { //reportes

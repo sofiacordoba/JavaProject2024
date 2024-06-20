@@ -206,12 +206,12 @@ public class VentanaPrincipal extends JFrame{
 
         // Botón de consultar monto por aula, piso y la institución
         JButton botonMonto = new JButton("Consultar monto recaudado por aulas, pisos y la institución");
-       /* botonMonto.addActionListener(new ActionListener() {
+        botonMonto.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                funcion()
+                funcionMontoRecaudado();
             }
-        });*/
+        });
         panelCentral.add(botonMonto);
 
         panelCentral.add(new JLabel("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"));
@@ -319,6 +319,12 @@ public class VentanaPrincipal extends JFrame{
 
     }
 
+    private void funcionMontoRecaudado() {
+
+        Reportes reportes = new Reportes();
+        textArea.setText(reportes.reporteMontoRecaudadoPantalla(universidad.getAulas()));
+
+    }
 
 }
 

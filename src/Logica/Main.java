@@ -31,6 +31,9 @@ public class Main {
         Reserva reserva1 = new Reserva(fi,hi,hf, asignatura1);
         aula1.agregarReserva(reserva1);
 
+        Aula aula4 = new Aula(181, 100);
+        uni.agregarAula(aula4);
+
         fi = LocalDate.of(2024, 6, 13);
         ff = LocalDate.of(2024, 8, 13);
         hi = LocalTime.of(18, 30, 0);
@@ -47,6 +50,9 @@ public class Main {
         Curso curso1 = new Curso(8, 695.3, "CUR201", "Matemáticas", 20);
         uni.agregarCurso(curso1);
 
+        Reserva reserva7 = new Reserva(fi,hi,hf, curso1);
+        aula1.agregarReserva(reserva7);
+
         fi = LocalDate.of(2024, 6, 13);
         hi = LocalTime.of(14, 30, 0);
         hf = LocalTime.of(16, 30, 0);
@@ -56,8 +62,25 @@ public class Main {
         Externo externo1 = new Externo(500.0, "Tech Corp", LocalDate.of(2024, 6, 13), LocalTime.of(15, 0), LocalTime.of(16, 0), "EVE001", "Exposición de Innovación", 80);
         uni.agregarExterno(externo1);
 
+
         Reserva reserva3 = new Reserva(fi,hi,hf, externo1);
         aula2.agregarReserva(reserva3);
+
+        Aula aula3 = new Aula(221, 100);
+        uni.agregarAula(aula3);
+
+        Reserva reserva4 = new Reserva(fi,hi,hf, externo1);
+        aula3.agregarReserva(reserva4);
+        Reserva reserva5 = new Reserva(fi,hi,hf, externo1);
+        aula3.agregarReserva(reserva5);
+        Reserva reserva6 = new Reserva(fi,hi,hf, externo1);
+        aula3.agregarReserva(reserva6);
+
+        // Guardar reportes en archivo de texto
+        Reportes reportes = new Reportes();
+        reportes.reporteMontoRecaudadoArchivo(uni.getAulas(), "reporteMontoRecaudado.txt");
+        reportes.reporteAulasPorReservasArchivo(uni.getAulas(), "reporteAulasPorReservas.txt");
+
 
 /*
 
