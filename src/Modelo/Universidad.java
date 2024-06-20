@@ -138,7 +138,7 @@ public class Universidad implements Serializable {
                 }
                 catch (ExcepcionNoReservar E)
                 {
-                    throw new ExcepcionNoReservar("No se puede reservar el curso.");
+                    throw new ExcepcionNoReservar("No se puede reservar el aula.");
                 }
             }
             else //no encontró el aula
@@ -165,13 +165,18 @@ public class Universidad implements Serializable {
 
             if (aulaAct != null && aulaAct.getID() == codAula) //si lo encuentra, ve si puede reservar
             {
+                if (eventAct instanceof Externo) // Verifica si el evento es una instancia de Evento
+                    throw new ExcepcionCodNoEncontrado("Ingresó un evento externo.");
+                else
+                {
                 try
                 {
                     aulaAct.agregarReservaEventoI(eventAct);
                 }
                 catch (ExcepcionNoReservar E)
                 {
-                    throw new ExcepcionNoReservar("No se puede reservar el evento interno.");
+                    throw new ExcepcionNoReservar("No se puede reservar el aula.");
+                }
                 }
             }
             else //no encontró el aula
@@ -182,6 +187,43 @@ public class Universidad implements Serializable {
             throw new ExcepcionCodNoEncontrado("No se enconró el código del evento " + codReservador +".");
     }
 
+    public void agregarReservaEventoEAula(int codAula, String codReservador, String nomOrg, double costo) throws ExcepcionCodNoEncontrado, ExcepcionNoReservar //agrega una reserva de un evento externo en un aula
+    {
+        Iterator<Evento> iteradorEvent = eventos.iterator(); //auxiliar para recorrer lista, es un iterador,no un contenedor
+        Evento eventAct=iteradorEvent.next(); //el evento actual, se usa en el while
+
+        while (iteradorEvent.hasNext() && !eventAct.getCodigo().equals(codReservador)) //mientras que el actual tenga siguiente y el cod del evento actual no sea igual al cod del curso que buscamos
+        {
+            eventAct=iteradorEvent.next(); //va ciclando
+        }
+
+        if (eventAct != null && eventAct.getCodigo().equals(codReservador)) //si la encuentra, trata de ver si se puede reservar
+        {
+            Aula aulaAct=buscarAula(codAula);
+
+            if (aulaAct != null && aulaAct.getID() == codAula) //si lo encuentra, ve si puede reservar
+            {
+                if (eventAct instanceof Externo) // Verifica si el evento es una instancia de Externo
+                {
+                    try {
+                        Externo externo = (Externo) eventAct;
+                        aulaAct.agregarReservaEventoE(externo, nomOrg, costo);
+                    } catch (ExcepcionNoReservar E) {
+                        throw new ExcepcionNoReservar("No se puede reservar el aula.");
+                    }
+                }
+                else
+                    throw new ExcepcionCodNoEncontrado("Ingresó un evento interno.");
+            }
+            else //no encontró el aula
+                throw new ExcepcionCodNoEncontrado("No se enconró el código del aula " + codAula +".");
+
+        }
+        else //no encontró el evento
+            throw new ExcepcionCodNoEncontrado("No se enconró el código del evento " + codReservador +".");
+    }
+
+
     public void agregarAsignatura(Asignatura asig) {
         asignaturas.add(asig);
     }
@@ -191,5 +233,9 @@ public class Universidad implements Serializable {
     public void agregarEvento(Evento evento) {
         eventos.add(evento);
     }
+    public void agregarExterno(Externo externo) {
+        eventos.add(externo);
+    }
+
 
 }

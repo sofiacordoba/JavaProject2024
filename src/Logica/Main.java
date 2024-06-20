@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 /** La clase Main.
- * Une al dominio con la interfaz gráfica
+ * Une al dominio con la interfaz gráfica.
  * @author Sofia Cordoba, Tatiana Malano Merlino, Josefina Garriz Scarpelli
  */
 
@@ -53,6 +53,9 @@ public class Main {
         Evento evento1 = new Evento(fi, hi, hf, "EVI102", "entrega diplomas", 40);
         uni.agregarEvento(evento1);
 
+        Externo externo1 = new Externo(500.0, "Tech Corp", LocalDate.of(2024, 6, 13), LocalTime.of(15, 0), LocalTime.of(16, 0), "EVE001", "Exposición de Innovación", 80);
+        uni.agregarExterno(externo1);
+
         /*
 
         System.out.println(aula1.toString());
@@ -66,8 +69,10 @@ public class Main {
         reportes.reporteMontoRecaudadoArchivo(uni.getAulas(), "reporteMontoRecaudado.txt");
         reportes.reporteAulasPorReservasArchivo(uni.getAulas(), "reporteAulasPorReservas.txt");*/
 
+
         VentanaPrincipal ventana = new VentanaPrincipal(uni);
         ventana.setVisible(true);
+
 
 
         /*

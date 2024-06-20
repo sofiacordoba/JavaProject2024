@@ -172,12 +172,12 @@ public class VentanaPrincipal extends JFrame{
         panelCentral.add(botonReservarEventI);
         // Botón de agregar reserva para evento externo
         JButton botonReservarEventE = new JButton("Reservar aula para evento externo");
-       /* botonReservarEventE.addActionListener(new ActionListener() {
+        botonReservarEventE.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                agregarReservaEventoE()
+                funcionAgregarReservaEventoE();
             }
-        });*/
+        });
         panelCentral.add(botonReservarEventE);
 
         panelCentral.add(new JLabel("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"));
@@ -293,21 +293,22 @@ public class VentanaPrincipal extends JFrame{
         }
     }
 
-/*
-    private void agregarReservaEventoE) {
+    private void funcionAgregarReservaEventoE() {
         try {
-            int codAula = Integer.parseInt(textCodAulaCancelar.getText());
-            int codReserva = Integer.parseInt(textCodReservaCancelar.getText());
-            universidad.cancelarReservaAula(codAula, codReserva);
-            textArea.append("Se canceló la reserva " + codReserva + " en el aula " + codAula + " exitosamente.\n");
-            JOptionPane.showMessageDialog(this, "Reserva cancelada con éxito", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            int codAula = Integer.parseInt(textCodAulaReservar.getText());
+            String codReservador = textCodReservador.getText();
+            String nomOrg = textNomOrg.getText();
+            double costo = Double.parseDouble(textCosto.getText());
+            universidad.agregarReservaEventoEAula(codAula, codReservador, nomOrg, costo);
+            textArea.setText("Se registró la reserva del evento externo " + codReservador + " en el aula " + codAula + " exitosamente.");
         } catch (ExcepcionCodNoEncontrado e) {
-            textArea.append(e.getMessage() + "\n");
+            textArea.setText(e.getMessage());
+        } catch (NumberFormatException e) {
+            textArea.setText("Error: Código de Aula o costo no válidos.");
+        } catch (ExcepcionNoReservar e) {
+            textArea.setText(e.getMessage());
         }
     }
-
-
-     */
 
 
 }
