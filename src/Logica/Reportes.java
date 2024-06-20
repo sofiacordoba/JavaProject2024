@@ -5,6 +5,7 @@ import Modelo.*;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -69,16 +70,33 @@ public class Reportes {
         }
     }
 
-    public void reporteAulasPorReservasPantalla(List<Aula> aulas) {
+    /*
+    public String mostrarReservas()
+    {
+        StringBuilder sb = new StringBuilder();
+        for (Reserva resAct : reservas) {
+            sb.append(resAct.toString()).append("\n");
+        }
+        return sb.toString();
+    }
+     */
+
+    public String reporteAulasPorReservasPantalla(List<Aula> aulas) {
+        StringBuilder sb = new StringBuilder();
+
+        List<Aula> aulaAux = new ArrayList<>(aulas);
+        aulaAux.sort((a1, a2) -> Integer.compare(a2.getCantidadReservas(), a1.getCantidadReservas()));
 
         int totalReservas = 0;
-        for (Aula aula : aulas) {
+        for (Aula aula : aulaAux) {
             totalReservas += aula.getCantidadReservas();
-            System.out.println("Aula " + aula.getID() + " tiene " + aula.getCantidadReservas() + " reservas.");
+            sb.append("Aula " + aula.getID() + " tiene " + aula.getCantidadReservas() + " reservas.").append("\n");
         }
 
-        double promedioReservas = (double) totalReservas / aulas.size();
-        System.out.println("Promedio de reservas por aula: " + promedioReservas);
+        double promedioReservas = (double) totalReservas / aulaAux.size();
+        sb.append("Promedio de reservas por aula: " + promedioReservas).append("\n");
+
+        return sb.toString();
     }
 
     public void reporteAulasPorReservasArchivo(List<Aula> aulas, String fileName) {

@@ -1,10 +1,12 @@
 package InterfazGrafica;
 
+import Modelo.Aula;
 import Modelo.Universidad;
 import Excepciones.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
+import Logica.Reportes;
 
 import javax.swing.*;
 import java.awt.*;
@@ -215,12 +217,12 @@ public class VentanaPrincipal extends JFrame{
         panelCentral.add(new JLabel("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"));
         // Botón de consultar cantidad de reservas por aula (y promedio)
         JButton botonCantRes = new JButton("Consultar cantidad de reservas por aula (y promedio por aula)");
-       /* botonCantRes.addActionListener(new ActionListener() {
+        botonCantRes.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                funcion()
+                FuncionCantRes();
             }
-        });*/
+        });
         panelCentral.add(botonCantRes);
 
         //agregar lo del panel central con scroll
@@ -308,6 +310,13 @@ public class VentanaPrincipal extends JFrame{
         } catch (ExcepcionNoReservar e) {
             textArea.setText(e.getMessage());
         }
+    }
+
+    private void FuncionCantRes() {
+
+        Reportes reportes = new Reportes();
+        textArea.setText(reportes.reporteAulasPorReservasPantalla(universidad.getAulas()));
+
     }
 
 

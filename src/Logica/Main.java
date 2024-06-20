@@ -59,6 +59,7 @@ public class Main {
         Reserva reserva3 = new Reserva(fi,hi,hf, externo1);
         aula2.agregarReserva(reserva3);
 
+/*
 
         System.out.println(aula1.toString());
 
@@ -69,7 +70,7 @@ public class Main {
 
         // Guardar reportes en archivo de texto
         reportes.reporteMontoRecaudadoArchivo(uni.getAulas(), "reporteMontoRecaudado.txt");
-        reportes.reporteAulasPorReservasArchivo(uni.getAulas(), "reporteAulasPorReservas.txt");
+        reportes.reporteAulasPorReservasArchivo(uni.getAulas(), "reporteAulasPorReservas.txt");*/
 
 
         VentanaPrincipal ventana = new VentanaPrincipal(uni);
