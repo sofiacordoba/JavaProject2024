@@ -14,7 +14,7 @@ import java.time.LocalTime;
 
 public class Main {
     public static void main(String[] args) {
-
+/*
         Universidad uni = new Universidad();
 
         //EJEMPLO
@@ -57,7 +57,7 @@ public class Main {
         uni.agregarExterno(externo1);
 
         Reserva reserva3 = new Reserva(fi,hi,hf, externo1);
-        aula2.agregarReserva(reserva3);
+        aula2.agregarReserva(reserva3);*/
 
 /*
 
