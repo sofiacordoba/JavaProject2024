@@ -163,12 +163,12 @@ public class VentanaPrincipal extends JFrame{
         panelCentral.add(botonReservarCurso);
         // Botón de agregar reserva para evento interno
         JButton botonReservarEventI = new JButton("Reservar aula para evento interno");
-       /* botonReservarEventI.addActionListener(new ActionListener() {
+        botonReservarEventI.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                agregarReservaEventoI()
+                funcionAgregarReservaEventoI();
             }
-        });*/
+        });
         panelCentral.add(botonReservarEventI);
         // Botón de agregar reserva para evento externo
         JButton botonReservarEventE = new JButton("Reservar aula para evento externo");
@@ -278,20 +278,22 @@ public class VentanaPrincipal extends JFrame{
         }
     }
 
-    /*
-
-    private void agregarReservaEventoI() {
+    private void funcionAgregarReservaEventoI() {
         try {
-            int codAula = Integer.parseInt(textCodAulaCancelar.getText());
-            int codReserva = Integer.parseInt(textCodReservaCancelar.getText());
-            universidad.cancelarReservaAula(codAula, codReserva);
-            textArea.append("Se canceló la reserva " + codReserva + " en el aula " + codAula + " exitosamente.\n");
-            JOptionPane.showMessageDialog(this, "Reserva cancelada con éxito", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            int codAula = Integer.parseInt(textCodAulaReservar.getText());
+            String codReservador = textCodReservador.getText();
+            universidad.agregarReservaEventoIAula(codAula, codReservador);
+            textArea.setText("Se registró la reserva del evento interno " + codReservador + " en el aula " + codAula + " exitosamente.");
         } catch (ExcepcionCodNoEncontrado e) {
-            textArea.append(e.getMessage() + "\n");
+            textArea.setText(e.getMessage());
+        } catch (NumberFormatException e) {
+            textArea.setText("Error: Código de Aula o Código de Reservador no válidos.");
+        } catch (ExcepcionNoReservar e) {
+            textArea.setText(e.getMessage());
         }
     }
 
+/*
     private void agregarReservaEventoE) {
         try {
             int codAula = Integer.parseInt(textCodAulaCancelar.getText());

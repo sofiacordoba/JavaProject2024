@@ -129,6 +129,23 @@ public class Aula implements Serializable {
             throw new ExcepcionNoReservar("No se puede reservar el aula.");
     }
 
+    public void agregarReservaEventoI(Evento event) throws ExcepcionNoReservar //agrega una reserva de evento interno
+    {
+        if (capaz(event.getCantParticipantes() ))
+        {
+            if (disponible (event.getFecha(), event.getHoraInicio(), event.getHoraFin())) //si se puede reservar en el horario, reserva el evento
+            {
+                Reserva reserva = new Reserva(event.getFecha(), event.getHoraInicio(), event.getHoraFin(), event);
+                agregarReserva(reserva);
+            }
+            else
+                throw new ExcepcionNoReservar("No se puede reservar el aula.");
+
+        }
+        else
+            throw new ExcepcionNoReservar("No se puede reservar el aula.");
+    }
+
     public void agregarReserva(Reserva reserva) //agrega reserva, no ordenado
     {
         reservas.add(reserva);

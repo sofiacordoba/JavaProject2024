@@ -149,11 +149,47 @@ public class Universidad implements Serializable {
             throw new ExcepcionCodNoEncontrado("No se enconró el código del curso " + codReservador +".");
     }
 
+    public void agregarReservaEventoIAula(int codAula, String codReservador) throws ExcepcionCodNoEncontrado, ExcepcionNoReservar //agrega una reserva de un evento interno en un aula
+    {
+        Iterator<Evento> iteradorEvent = eventos.iterator(); //auxiliar para recorrer lista, es un iterador,no un contenedor
+        Evento eventAct=iteradorEvent.next(); //el evento actual, se usa en el while
+
+        while (iteradorEvent.hasNext() && !eventAct.getCodigo().equals(codReservador)) //mientras que el actual tenga siguiente y el cod del evento actual no sea igual al cod del curso que buscamos
+        {
+            eventAct=iteradorEvent.next(); //va ciclando
+        }
+
+        if (eventAct != null && eventAct.getCodigo().equals(codReservador)) //si la encuentra, trata de ver si se puede reservar
+        {
+            Aula aulaAct=buscarAula(codAula);
+
+            if (aulaAct != null && aulaAct.getID() == codAula) //si lo encuentra, ve si puede reservar
+            {
+                try
+                {
+                    aulaAct.agregarReservaEventoI(eventAct);
+                }
+                catch (ExcepcionNoReservar E)
+                {
+                    throw new ExcepcionNoReservar("No se puede reservar el evento interno.");
+                }
+            }
+            else //no encontró el aula
+                throw new ExcepcionCodNoEncontrado("No se enconró el código del aula " + codAula +".");
+
+        }
+        else //no encontró el evento
+            throw new ExcepcionCodNoEncontrado("No se enconró el código del evento " + codReservador +".");
+    }
+
     public void agregarAsignatura(Asignatura asig) {
         asignaturas.add(asig);
     }
     public void agregarCurso(Curso curso) {
         cursos.add(curso);
+    }
+    public void agregarEvento(Evento evento) {
+        eventos.add(evento);
     }
 
 }

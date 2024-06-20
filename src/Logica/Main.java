@@ -47,6 +47,12 @@ public class Main {
         Curso curso1 = new Curso(8, 695.3, "CUR201", "Matemáticas", 20);
         uni.agregarCurso(curso1);
 
+        fi = LocalDate.of(2024, 6, 13);
+        hi = LocalTime.of(14, 30, 0);
+        hf = LocalTime.of(16, 30, 0);
+        Evento evento1 = new Evento(fi, hi, hf, "EVI102", "entrega diplomas", 40);
+        uni.agregarEvento(evento1);
+
         /*
 
         System.out.println(aula1.toString());
