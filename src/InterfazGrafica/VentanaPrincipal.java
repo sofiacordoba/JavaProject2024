@@ -53,7 +53,7 @@ public class VentanaPrincipal extends JFrame{
         add(labelTitulo, BorderLayout.NORTH);
 
         // Área de texto para mensajes
-        textArea = new JTextArea(5, 20);
+        textArea = new JTextArea(10, 20);
         textArea.setEditable(false); // no editable para que solo se use para mensajes
         JScrollPane textAreaScrollPane = new JScrollPane(textArea);
         textAreaScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);

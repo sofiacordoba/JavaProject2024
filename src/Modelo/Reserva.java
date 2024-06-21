@@ -40,7 +40,7 @@ public class Reserva implements Serializable {
     @Override
     public String toString() //sobreescrito toString
     {
-        return "    Codigo de reserva: "+ codReserva +"\n        Fecha: "+ fecha.toString()+"\n        Hora de inicio: "+ horaInicio.toString()+"\n        Hora de finalización: "+ horaFin.toString();
+        return "    Codigo de reserva: "+ codReserva +"\n        Fecha: "+ fecha.toString()+"\n        Hora de inicio: "+ horaInicio.toString()+"\n        Hora de finalización: "+ horaFin.toString()+"\n        Código de reservador: "+ reservador.getCodigo();
     }
 }
 
