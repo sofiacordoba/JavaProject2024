@@ -54,15 +54,25 @@ public class VentanaPrincipal extends JFrame{
 
         // Área de texto para mensajes
         textArea = new JTextArea(5, 20);
+        textArea.setEditable(false); // no editable para que solo se use para mensajes
+        JScrollPane textAreaScrollPane = new JScrollPane(textArea);
+        textAreaScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        textAreaScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        add(textAreaScrollPane, BorderLayout.SOUTH);
+        textArea.setText("Área de texto para mensajes");
+
+/*
+        // Área de texto para mensajes
+        textArea = new JTextArea(5, 20);
         textArea.setEditable(false); //no editable para que solo se use para mensajes
         add(textArea, BorderLayout.SOUTH);
-        textArea.setText("Área de texto para mensajes");
+        textArea.setText("Área de texto para mensajes");*/
 
         // Panel Central con formularios
         JPanel panelCentral = new JPanel();
         panelCentral.setLayout(new BoxLayout(panelCentral, BoxLayout.Y_AXIS));
 
-        //barra de scroll
+        //barra de scroll para el formulario
         panelCentral.setPreferredSize(new Dimension(1000,1000));
         JScrollPane scrollPane= new JScrollPane();
         scrollPane.setBounds(5,10,1000,1000);
