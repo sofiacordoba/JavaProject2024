@@ -5,8 +5,6 @@ import Modelo.*;
 import InterfazGrafica.VentanaPrincipal;
 import Persistencia.*;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 
 /** La clase Main.
  * Une al dominio con la interfaz gráfica, la carga de datos y los reportes.
@@ -15,32 +13,41 @@ import java.time.LocalTime;
 
 public class Main {
     public static void main(String[] args) {
-        Universidad uni = new Universidad();
+        Universidad uni = Persistencia.DeserializarUniversidad();
 
-        //Cargar datos
-        LectorXML lector = new LectorXML();
-        try {
-            lector.cargarDatos("src/persistencia/datos_universidad.xml", uni);
-            // Mostrar los datos cargados
-            System.out.println("Aulas:");
-            for (Aula aula : uni.getAulas()) {
-                System.out.println(aula.getID());
+        if (uni == null) {
+            // Cargar datos desde el archivo XML si no hay datos serializados
+            uni = new Universidad();
+            LectorXML lector = new LectorXML();
+            try {
+                lector.cargarDatos("src/persistencia/datos_universidad.xml", uni);
+                System.out.println("Datos cargados desde XML correctamente.");
+            } catch (ExcepcionArchivoInvalido e) {
+                System.err.println("Error: " + e.getMessage());
+                return; // Termina el programa si hay un error
             }
-            System.out.println("Asignaturas:");
-            for (Asignatura asig : uni.getAsignaturas()) {
-                System.out.println(asig.getCodigo());
-            }
-            System.out.println("Cursos:");
-            for (Curso curso : uni.getCursos()) {
-                System.out.println(curso.getCodigo());
-            }
-            System.out.println("Eventos:");
-            for (Evento evento : uni.getEventos()) {
-                System.out.println(evento.getCodigo());
-            }
-        } catch (ExcepcionArchivoInvalido e) {
-            System.err.println("Error: " + e.getMessage());
+        } else {
+            System.out.println("Datos deserializados correctamente.");
         }
+
+        // Mostrar los datos cargados
+        System.out.println("Aulas:");
+        for (Aula aula : uni.getAulas()) {
+            System.out.println(aula.getID());
+        }
+        System.out.println("Asignaturas:");
+        for (Asignatura asig : uni.getAsignaturas()) {
+            System.out.println(asig.getCodigo());
+        }
+        System.out.println("Cursos:");
+        for (Curso curso : uni.getCursos()) {
+            System.out.println(curso.getCodigo());
+        }
+        System.out.println("Eventos:");
+        for (Evento evento : uni.getEventos()) {
+            System.out.println(evento.getCodigo());
+        }
+
 
 /*
         //EJEMPLO de reserva
@@ -57,6 +64,15 @@ public class Main {
         //interfaz gráfca
         VentanaPrincipal ventana = new VentanaPrincipal(uni);
         ventana.setVisible(true);
+
+        // Agregar un shutdown hook para serializar datos al cerrar la aplicación
+        Universidad finalUni = uni;
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            boolean result = Persistencia.SerializarUniversidad(finalUni);
+            if (result) {
+                System.out.println("Datos serializados correctamente.");
+            }
+        }));
 
             }
     }

@@ -2,6 +2,7 @@ package Modelo;
 
 import Excepciones.*;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.*;
 import java.time.LocalDate;
@@ -13,6 +14,9 @@ import java.time.LocalTime;
  */
 
 public class Aula implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
+
     //Atributos:
     private int ID;
     private int capacidad;

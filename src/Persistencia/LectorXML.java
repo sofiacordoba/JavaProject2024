@@ -15,6 +15,10 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+/** La clase LectorXML se usa para cargar los datos del sistema.
+ * @autor Sofia Cordoba, Tatiana Malano Merlino, Josefina Garriz Scarpelli
+ */
+
 public class LectorXML {
     public void cargarDatos(String rutaArchivo, Universidad universidad) throws ExcepcionArchivoInvalido
     {
