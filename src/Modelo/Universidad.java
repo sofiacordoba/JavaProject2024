@@ -2,6 +2,7 @@ package Modelo;
 
 import Excepciones.*;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.*;
 import java.time.LocalDate;
@@ -14,6 +15,8 @@ import java.time.LocalTime;
  */
 
 public class Universidad implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
     private List<Aula> aulas = new ArrayList<>();
     private List<Asignatura> asignaturas = new ArrayList<>();
     private List<Curso> cursos = new ArrayList<>();
