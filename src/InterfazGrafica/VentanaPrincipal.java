@@ -61,13 +61,6 @@ public class VentanaPrincipal extends JFrame{
         add(textAreaScrollPane, BorderLayout.SOUTH);
         textArea.setText("Área de texto para mensajes");
 
-/*
-        // Área de texto para mensajes
-        textArea = new JTextArea(5, 20);
-        textArea.setEditable(false); //no editable para que solo se use para mensajes
-        add(textArea, BorderLayout.SOUTH);
-        textArea.setText("Área de texto para mensajes");*/
-
         // Panel Central con formularios
         JPanel panelCentral = new JPanel();
         panelCentral.setLayout(new BoxLayout(panelCentral, BoxLayout.Y_AXIS));
@@ -83,39 +76,39 @@ public class VentanaPrincipal extends JFrame{
         panelCentral.add(new JLabel("   -Por piso:"));
         // Botón de consultar por planta baja
         JButton botonConsultarPB = new JButton("Planta baja");
-       /* botonConsultarPB.addActionListener(new ActionListener() {
+        botonConsultarPB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                funcion()
+                funcionConsultarPorPiso(0);
             }
-        });*/
+        });
         panelCentral.add(botonConsultarPB);
         // Botón de consultar por piso 1
         JButton botonConsultarP1 = new JButton("Piso 1");
-       /* botonConsultarP1.addActionListener(new ActionListener() {
+        botonConsultarP1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                funcion()
+                funcionConsultarPorPiso(1);
             }
-        });*/
+        });
         panelCentral.add(botonConsultarP1);
         // Botón de consultar por piso 2
         JButton botonConsultarP2 = new JButton("Piso 2");
-       /* botonConsultarP2.addActionListener(new ActionListener() {
+        botonConsultarP2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                funcion()
+                funcionConsultarPorPiso(2);
             }
-        });*/
+        });
         panelCentral.add(botonConsultarP2);
         // Botón de consultar por piso 3
         JButton botonConsultarP3 = new JButton("Piso 3");
-       /* botonConsultarP3.addActionListener(new ActionListener() {
+        botonConsultarP3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                funcion()
+                funcionConsultarPorPiso(3);
             }
-        });*/
+        });
         panelCentral.add(botonConsultarP3);
         panelCentral.add(new JLabel("   -Por código de reservador:"));
         textCodConsultaReservador = new JTextField(10);
@@ -335,11 +328,18 @@ public class VentanaPrincipal extends JFrame{
         textArea.setText(reportes.reporteMontoRecaudadoPantalla(universidad.getAulas()));
 
     }
-
     private void funcionConsultarPorRes() {
         try {
             String codReservador = textCodConsultaReservador.getText();
             textArea.setText(universidad.buscarAulasPorReservador(codReservador));
+        } catch (ExcepcionCodNoEncontrado e) {
+            textArea.setText(e.getMessage());
+        }
+    }
+
+    private void funcionConsultarPorPiso(int piso) {
+        try {
+            textArea.setText(universidad.buscarAulasPorNumeroDePiso(piso));
         } catch (ExcepcionCodNoEncontrado e) {
             textArea.setText(e.getMessage());
         }

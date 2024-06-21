@@ -9,6 +9,7 @@ import java.time.LocalTime;
 
 /** La clase Universidad representa a la universidad del sistema.
  * Principalmente proporciona métodos para buscar aulas, agregar y cancelar reservas.
+ * La lista de aulas está ordenada ascendentemente por ID.
  * @author Sofia Cordoba, Tatiana Malano Merlino, Josefina Garriz Scarpelli
  */
 
@@ -41,14 +42,27 @@ public class Universidad implements Serializable {
         return aulas;
     }
 
-    public List<Aula> buscarAulasPorNumeroDePiso(int piso){ //itero sobre todas las aulas y armo un array con las centenas
-        List<Aula> aulasFiltradas = new ArrayList<>();
-        for(Aula aula: aulas){
-            if(aula.getID() / 100 == piso){
-                aulasFiltradas.add(aula);
-            }
+    public String buscarAulasPorNumeroDePiso(int piso) throws ExcepcionCodNoEncontrado{
+        StringBuilder sb = new StringBuilder();
+        Iterator<Aula> iterator = aulas.iterator();
+        boolean continuar = true;
+        int pisoAula;
+
+        while (iterator.hasNext() && continuar) {
+            Aula aula = iterator.next();
+            pisoAula = aula.getID() / 100; // Obtener el piso del aula a partir del ID
+
+            if (pisoAula > piso)  // Si el piso del aula es mayor que el piso buscado, terminamos el bucle
+                continuar = false;
+             else if (pisoAula == piso)  // Si el piso del aula coincide con el piso dado, añadir la información del aula al StringBuilder
+                sb.append(aula.toString()).append("\n");
+
         }
-        return aulasFiltradas;
+
+        if (sb.length() == 0)
+            throw new ExcepcionCodNoEncontrado("No hay aulas en el piso " + piso+".");
+        else
+            return sb.toString();
     }
 
     public String buscarAulasPorReservador(String codRes) throws ExcepcionCodNoEncontrado
