@@ -10,8 +10,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -39,6 +37,7 @@ public class LectorXML {
                 int ID = Integer.parseInt(elemento.getElementsByTagName("ID").item(0).getTextContent());
                 int capacidad = Integer.parseInt(elemento.getElementsByTagName("capacidad").item(0).getTextContent());
                 Aula aula = new Aula(ID, capacidad);
+                validarAula(aula);  // Validación
                 universidad.agregarAula(aula);
             }
 
@@ -55,6 +54,7 @@ public class LectorXML {
                 String descripcion = elemento.getElementsByTagName("descripcion").item(0).getTextContent();
                 int cantParticipantes = Integer.parseInt(elemento.getElementsByTagName("cantParticipantes").item(0).getTextContent());
                 Asignatura asignatura = new Asignatura(fechaI, fechaF, horaI, horaF, diaSemana, codigo,descripcion, cantParticipantes);
+                validarAsignatura(asignatura);
                 universidad.agregarAsignatura(asignatura);
             }
 
@@ -68,6 +68,7 @@ public class LectorXML {
                 String descripcion = elemento.getElementsByTagName("descripcion").item(0).getTextContent();
                 int cantParticipantes = Integer.parseInt(elemento.getElementsByTagName("cantParticipantes").item(0).getTextContent());
                 Curso curso = new Curso (cantClases, costo, codigo, descripcion, cantParticipantes);
+                validarCurso(curso);
                 universidad.agregarCurso(curso);
             }
 
@@ -82,6 +83,7 @@ public class LectorXML {
                 String descripcion = elemento.getElementsByTagName("descripcion").item(0).getTextContent();
                 int cantParticipantes = Integer.parseInt(elemento.getElementsByTagName("cantParticipantes").item(0).getTextContent());
                 Evento interno = new Evento (fecha, horaI, horaF, codigo, descripcion, cantParticipantes);
+                validarEvento(interno);
                 universidad.agregarEvento(interno);
             }
 
@@ -98,6 +100,7 @@ public class LectorXML {
                 String descripcion = elemento.getElementsByTagName("descripcion").item(0).getTextContent();
                 int cantParticipantes = Integer.parseInt(elemento.getElementsByTagName("cantParticipantes").item(0).getTextContent());
                 Externo externo = new Externo (cobroAlq, org, fecha, horaI, horaF, codigo, descripcion, cantParticipantes);
+                validarEvento(externo);
                 universidad.agregarEvento(externo);
             }
 
@@ -105,5 +108,82 @@ public class LectorXML {
             throw new ExcepcionArchivoInvalido("Error al cargar el archivo XML: " + e.getMessage());}
 
     }
+
+    private void validarAula(Aula aula) throws ExcepcionArchivoInvalido {
+        if (aula.getID() <= 0) {
+            throw new ExcepcionArchivoInvalido("El ID del aula debe ser un número positivo.");
+        }
+        if (aula.getCapacidad() <= 0) {
+            throw new ExcepcionArchivoInvalido("La capacidad debe ser un número positivo.");
+        }
+    }
+
+    private void validarAsignatura(Asignatura asig) throws ExcepcionArchivoInvalido {
+        if (asig.getCodigo() == null || asig.getCodigo().isEmpty()) {
+            throw new ExcepcionArchivoInvalido("El código de la asignatura no puede estar vacío.");
+        }
+        if (asig.getFechaInicio() == null) {
+            throw new ExcepcionArchivoInvalido("La fecha no puede ser nula.");
+        }
+        if (asig.getFechaFin() == null) {
+            throw new ExcepcionArchivoInvalido("La fecha no puede ser nula.");
+        }
+        if (asig.getHoraInicio() == null) {
+            throw new ExcepcionArchivoInvalido("La hora no puede ser nula.");
+        }
+        if (asig.getHoraFin() == null) {
+            throw new ExcepcionArchivoInvalido("La hora no puede ser nula.");
+        }
+        if (asig.getCantParticipantes() <= 0) {
+            throw new ExcepcionArchivoInvalido("La cantidad de participantes debe ser un número positivo.");
+        }
+        if (asig.getDiaSemana() == null || asig.getDiaSemana().isEmpty()) {
+            throw new ExcepcionArchivoInvalido("El día de la semana no puede estar vacío.");
+        }
+        if (asig.getDescripcion() == null || asig.getDescripcion().isEmpty()) {
+            throw new ExcepcionArchivoInvalido("La descripción no puede estar vacía.");
+        }
+    }
+
+    private void validarCurso(Curso curso) throws ExcepcionArchivoInvalido {
+        if (curso.getCodigo() == null || curso.getCodigo().isEmpty()) {
+            throw new ExcepcionArchivoInvalido("El código de la asignatura no puede estar vacío.");
+        }
+        if (curso.getCantParticipantes() <= 0) {
+            throw new ExcepcionArchivoInvalido("La cantidad de participantes debe ser un número positivo.");
+        }
+        if (curso.getDescripcion() == null || curso.getDescripcion().isEmpty()) {
+            throw new ExcepcionArchivoInvalido("La descripción no puede estar vacía.");
+        }
+        if (curso.getCantClases() <= 0) {
+            throw new ExcepcionArchivoInvalido("La cantidad de clases debe ser un número positivo.");
+        }
+        if (curso.getCosto() <= 0) {
+            throw new ExcepcionArchivoInvalido("El costo de clases debe ser un número positivo.");
+        }
+    }
+
+    private void validarEvento(Evento evento) throws ExcepcionArchivoInvalido {
+        if (evento.getCodigo() == null || evento.getCodigo().isEmpty()) {
+            throw new ExcepcionArchivoInvalido("El código de la asignatura no puede estar vacío.");
+        }
+        if (evento.getCantParticipantes() <= 0) {
+            throw new ExcepcionArchivoInvalido("La cantidad de participantes debe ser un número positivo.");
+        }
+        if (evento.getDescripcion() == null || evento.getDescripcion().isEmpty()) {
+            throw new ExcepcionArchivoInvalido("La descripción no puede estar vacía.");
+        }
+        if (evento.getFecha() == null) {
+            throw new ExcepcionArchivoInvalido("La fecha no puede ser nula.");
+        }
+        if (evento.getHoraInicio() == null) {
+            throw new ExcepcionArchivoInvalido("La hora no puede ser nula.");
+        }
+        if (evento.getHoraFin() == null) {
+            throw new ExcepcionArchivoInvalido("La hora no puede ser nula.");
+        }
+
+    }
+
 
 }
