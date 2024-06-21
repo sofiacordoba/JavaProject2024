@@ -1,6 +1,6 @@
 Recaudación del aula 1: $0.0
-Recaudación del aula 2: $0.0
-     Recaudación total del piso 0: $0.0
+Recaudación del aula 2: $171000.0
+     Recaudación total del piso 0: $171000.0
 Recaudación del aula 101: $0.0
 Recaudación del aula 102: $0.0
 Recaudación del aula 103: $0.0
@@ -16,4 +16,4 @@ Recaudación del aula 301: $0.0
 Recaudación del aula 302: $0.0
 Recaudación del aula 303: $0.0
      Recaudación total del piso 3: $0.0
-         Recaudación total de la institución: $0.0
+         Recaudación total de la institución: $171000.0
