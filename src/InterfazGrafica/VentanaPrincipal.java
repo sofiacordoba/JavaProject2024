@@ -112,12 +112,12 @@ public class VentanaPrincipal extends JFrame{
         panelCentral.add(textCodConsultaReservador);
         // Botón de consultar por reservador
         JButton botonConsultarReservador = new JButton("Consultar por reservador");
-       /* botonConsultarReservador.addActionListener(new ActionListener() {
+        botonConsultarReservador.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                funcion()
+                funcionConsultarPorRes();
             }
-        });*/
+        });
         panelCentral.add(botonConsultarReservador);
 
         panelCentral.add(new JLabel("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"));
@@ -324,6 +324,15 @@ public class VentanaPrincipal extends JFrame{
         Reportes reportes = new Reportes();
         textArea.setText(reportes.reporteMontoRecaudadoPantalla(universidad.getAulas()));
 
+    }
+
+    private void funcionConsultarPorRes() {
+        try {
+            String codReservador = textCodConsultaReservador.getText();
+            textArea.setText(universidad.buscarAulasPorReservador(codReservador));
+        } catch (ExcepcionCodNoEncontrado e) {
+            textArea.setText(e.getMessage());
+        }
     }
 
 }

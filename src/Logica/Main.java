@@ -31,8 +31,14 @@ public class Main {
         Reserva reserva1 = new Reserva(fi,hi,hf, asignatura1);
         aula1.agregarReserva(reserva1);
 
+        Reserva reservaW = new Reserva(LocalDate.of(2024, 6, 13), LocalTime.of(15, 0), LocalTime.of(16, 0), asignatura1);
+        aula1.agregarReserva(reservaW);
+
         Aula aula4 = new Aula(181, 100);
         uni.agregarAula(aula4);
+
+        Reserva reservaZ = new Reserva(LocalDate.of(2024, 6, 13), LocalTime.of(15, 0), LocalTime.of(16, 0), asignatura1);
+        aula4.agregarReserva(reservaZ);
 
         fi = LocalDate.of(2024, 6, 13);
         ff = LocalDate.of(2024, 8, 13);

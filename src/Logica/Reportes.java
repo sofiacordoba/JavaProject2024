@@ -29,17 +29,11 @@ public class Reportes {
             // Si cambiamos de piso, mostramos la recaudación del piso anterior
             if (piso != pisoActual) {
                 if (pisoActual != -1) { // Si no es el primer piso que procesamos
-                    sb.append("Recaudación total del piso " + pisoActual + ": $" + recaudacionPisoActual).append("\n");
+                    sb.append("     Recaudación total del piso " + pisoActual + ": $" + recaudacionPisoActual).append("\n");
                 }
                 recaudacionPisoActual = 0; // Reiniciamos la recaudación del piso actual
                 pisoActual = piso;  // Actualizamos el piso actual
             }
-            /*
-            // Si cambiamos de piso, mostramos la recaudación del piso anterior
-            if (piso != pisoActual && pisoActual != -1) {
-                sb.append("Recaudación total del piso " + pisoActual + ": $" + recaudacionPisoActual).append("\n");
-                recaudacionPisoActual = 0; // Reiniciamos la recaudación del piso actual
-            }*/
 
             pisoActual = piso;  // Actualizamos el piso actual
             recaudacionPisoActual += recaudacionAula; // Sumamos la recaudación del aula al piso actual
@@ -48,8 +42,8 @@ public class Reportes {
 
         }
 
-        sb.append("Recaudación total del piso " + pisoActual + ": $" + recaudacionPisoActual).append("\n");// Mostrar la recaudación del último piso procesado
-        sb.append("Recaudación total de la institución: $" + recaudacionTotalInstitucion).append("\n");// Mostrar la recaudación total de la institución
+        sb.append("     Recaudación total del piso " + pisoActual + ": $" + recaudacionPisoActual).append("\n");// Mostrar la recaudación del último piso procesado
+        sb.append("         Recaudación total de la institución: $" + recaudacionTotalInstitucion).append("\n");// Mostrar la recaudación total de la institución
 
         return sb.toString();
     }
@@ -66,7 +60,7 @@ public class Reportes {
 
                 if (piso != pisoActual) {
                     if (pisoActual != -1) {
-                        writer.write("Recaudación total del piso " + pisoActual + ": $" + recaudacionPisoActual);
+                        writer.write("     Recaudación total del piso " + pisoActual + ": $" + recaudacionPisoActual);
                         writer.newLine();
                     }
                     recaudacionPisoActual = 0;
@@ -80,10 +74,10 @@ public class Reportes {
             }
 
             // Agregar la recaudación del último piso procesado
-            writer.write("Recaudación total del piso " + pisoActual + ": $" + recaudacionPisoActual);
+            writer.write("     Recaudación total del piso " + pisoActual + ": $" + recaudacionPisoActual);
             writer.newLine();
             // Agregar la recaudación total de la institución
-            writer.write("Recaudación total de la institución: $" + recaudacionTotalInstitucion);
+            writer.write("         Recaudación total de la institución: $" + recaudacionTotalInstitucion);
             writer.newLine();
 
         } catch (IOException e) {

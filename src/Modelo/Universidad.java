@@ -37,16 +37,6 @@ public class Universidad implements Serializable {
         Collections.sort(aulas, (a1, a2) -> Integer.compare(a1.getID(), a2.getID()));
     }
 
-    // Método privado para ordenar las aulas en orden descendente por ID
-    private void ordenarAulasDescendentemente() {
-        Collections.sort(aulas, new Comparator<Aula>() {
-            @Override
-            public int compare(Aula a1, Aula a2) {
-                return Integer.compare(a2.getID(), a1.getID()); // Orden descendente por ID
-            }
-        });
-    }
-
     public List<Aula> getAulas() { //reportes
         return aulas;
     }
@@ -61,18 +51,23 @@ public class Universidad implements Serializable {
         return aulasFiltradas;
     }
 
-    public List<Aula> buscarAulasPorReservador(Reservador reservador){
-        List<Aula> aulasFiltradas = new ArrayList<>();
-        String codigoEntidad = reservador.getCodigo();
+    public String buscarAulasPorReservador(String codRes) throws ExcepcionCodNoEncontrado
+    {
+        StringBuilder sb = new StringBuilder();
+
         for(Aula aula: aulas){
             for(Reserva reserva: aula.getReservas()){
-                if(reserva.getReservador().getCodigo().equals(codigoEntidad)){
-                    aulasFiltradas.add(aula);
-                    break;
+                if(reserva.getReservador().getCodigo().equals(codRes)){
+                    sb.append(aula.toString()).append("\n");
+                    break; // Salir del bucle interno y continuar con el siguiente ciclo del bucle externo para ver si el reservador reservó más aulas
                 }
             }
         }
-        return aulasFiltradas; //devuelve una lista de aulas reservadas para ese codigo
+
+        if (sb.length() == 0)
+            throw new ExcepcionCodNoEncontrado("No se enconró el código de un reservador " + codRes+".");
+        else
+            return sb.toString();
     }
 
     public void cancelarReservaAula(int codAula, int codRes) throws ExcepcionCodNoEncontrado //cancela una reserva en un aula
