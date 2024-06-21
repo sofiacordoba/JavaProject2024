@@ -1,0 +1,15 @@
+Aula 1 tiene 0 reservas.
+Aula 2 tiene 0 reservas.
+Aula 101 tiene 0 reservas.
+Aula 102 tiene 0 reservas.
+Aula 103 tiene 0 reservas.
+Aula 104 tiene 0 reservas.
+Aula 105 tiene 0 reservas.
+Aula 201 tiene 0 reservas.
+Aula 202 tiene 0 reservas.
+Aula 203 tiene 0 reservas.
+Aula 204 tiene 0 reservas.
+Aula 301 tiene 0 reservas.
+Aula 302 tiene 0 reservas.
+Aula 303 tiene 0 reservas.
+Promedio de reservas por aula: 0.0
