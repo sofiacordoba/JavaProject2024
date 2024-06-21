@@ -59,7 +59,7 @@ public class Universidad implements Serializable {
             for(Reserva reserva: aula.getReservas()){
                 if(reserva.getReservador().getCodigo().equals(codRes)){
                     sb.append(aula.toString()).append("\n");
-                    break; // Salir del bucle interno y continuar con el siguiente ciclo del bucle externo para ver si el reservador reservó más aulas
+                    break; // Salir del bucle interno para no repetir el aula y continuar con el siguiente ciclo del bucle externo para ver si el reservador reservó más aulas
                 }
             }
         }
