@@ -41,6 +41,15 @@ public class Universidad implements Serializable {
     public List<Aula> getAulas() { //reportes
         return aulas;
     }
+    public List<Asignatura> getAsignaturas() { //reportes
+        return asignaturas;
+    }
+    public List<Curso> getCursos() { //reportes
+        return cursos;
+    }
+    public List<Evento> getEventos() { //reportes
+        return eventos;
+    }
 
     public String buscarAulasPorNumeroDePiso(int piso) throws ExcepcionCodNoEncontrado{
         StringBuilder sb = new StringBuilder();

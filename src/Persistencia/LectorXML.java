@@ -18,9 +18,8 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 public class LectorXML {
-    public Universidad cargarDatos(String rutaArchivo) throws ExcepcionArchivoInvalido
+    public void cargarDatos(String rutaArchivo, Universidad universidad) throws ExcepcionArchivoInvalido
     {
-        Universidad universidad = new Universidad();
 
         try
         {
@@ -34,9 +33,9 @@ public class LectorXML {
             DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 
             // Leer y agregar Aulas
-            NodeList nList = doc.getElementsByTagName("Aula");
-            for (int temp = 0; temp < nList.getLength(); temp++) {
-                Element elemento = (Element) nList.item(temp);
+            NodeList nListAulas = doc.getElementsByTagName("Aula");
+            for (int temp = 0; temp < nListAulas.getLength(); temp++) {
+                Element elemento = (Element) nListAulas.item(temp);
                 int ID = Integer.parseInt(elemento.getElementsByTagName("ID").item(0).getTextContent());
                 int capacidad = Integer.parseInt(elemento.getElementsByTagName("capacidad").item(0).getTextContent());
                 Aula aula = new Aula(ID, capacidad);
@@ -44,9 +43,9 @@ public class LectorXML {
             }
 
             // Leer y agregar Asignaturas
-            nList = doc.getElementsByTagName("Asignatura");
-            for (int temp = 0; temp < nList.getLength(); temp++) {
-                Element elemento = (Element) nList.item(temp);
+            NodeList nListAsignaturas = doc.getElementsByTagName("Asignatura");
+            for (int temp = 0; temp < nListAsignaturas.getLength(); temp++) {
+                Element elemento = (Element) nListAsignaturas.item(temp);
                 LocalDate fechaI = LocalDate.parse(elemento.getElementsByTagName("fechaI").item(0).getTextContent(), dateFormatter);
                 LocalDate fechaF = LocalDate.parse(elemento.getElementsByTagName("fechaF").item(0).getTextContent(), dateFormatter);
                 LocalTime horaI = LocalTime.parse(elemento.getElementsByTagName("horaI").item(0).getTextContent(), timeFormatter);
@@ -60,8 +59,9 @@ public class LectorXML {
             }
 
             // Leer y agregar Cursos
-            for (int temp = 0; temp < nList.getLength(); temp++) {
-                Element elemento = (Element) nList.item(temp);
+            NodeList nListCursos = doc.getElementsByTagName("Curso");
+            for (int temp = 0; temp < nListCursos.getLength(); temp++) {
+                Element elemento = (Element) nListCursos.item(temp);
                 int cantClases = Integer.parseInt(elemento.getElementsByTagName("cantClases").item(0).getTextContent());
                 double costo = Double.parseDouble(elemento.getElementsByTagName("costo").item(0).getTextContent());
                 String codigo = elemento.getElementsByTagName("codigo").item(0).getTextContent();
@@ -72,8 +72,9 @@ public class LectorXML {
             }
 
             // Leer y agregar Eventos internos
-            for (int temp = 0; temp < nList.getLength(); temp++) {
-                Element elemento = (Element) nList.item(temp);
+            NodeList nListInternos = doc.getElementsByTagName("Interno");
+            for (int temp = 0; temp < nListInternos.getLength(); temp++) {
+                Element elemento = (Element) nListInternos.item(temp);
                 LocalDate fecha = LocalDate.parse(elemento.getElementsByTagName("fecha").item(0).getTextContent(), dateFormatter);
                 LocalTime horaI = LocalTime.parse(elemento.getElementsByTagName("horaI").item(0).getTextContent(), timeFormatter);
                 LocalTime horaF = LocalTime.parse(elemento.getElementsByTagName("horaF").item(0).getTextContent(), timeFormatter);
@@ -85,8 +86,9 @@ public class LectorXML {
             }
 
             // Leer y agregar Eventos externos
-            for (int temp = 0; temp < nList.getLength(); temp++) {
-                Element elemento = (Element) nList.item(temp);
+            NodeList nListExternos = doc.getElementsByTagName("Externo");
+            for (int temp = 0; temp < nListExternos.getLength(); temp++) {
+                Element elemento = (Element) nListExternos.item(temp);
                 double cobroAlq = Double.parseDouble(elemento.getElementsByTagName("cobroAlq").item(0).getTextContent());
                 String org = elemento.getElementsByTagName("org").item(0).getTextContent();
                 LocalDate fecha = LocalDate.parse(elemento.getElementsByTagName("fecha").item(0).getTextContent(), dateFormatter);
@@ -102,7 +104,6 @@ public class LectorXML {
         } catch (Exception e) {
             throw new ExcepcionArchivoInvalido("Error al cargar el archivo XML: " + e.getMessage());}
 
-        return universidad;
     }
 
 }
