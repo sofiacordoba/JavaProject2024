@@ -77,24 +77,30 @@ public class Universidad implements Serializable {
             return sb.toString();
     }
 
-    public String buscarAulasPorReservador(String codRes) throws ExcepcionCodNoEncontrado
-    {
+    public String buscarAulasPorReservador(String codRes) throws ExcepcionCodNoEncontrado {
         StringBuilder sb = new StringBuilder();
+        boolean encontrado = false;
+        Aula aula;
+        Reserva reserva;
+        Iterator<Aula> aulaIterator = aulas.iterator();
 
-        outerLoop:
-        for(Aula aula: aulas){
-            for(Reserva reserva: aula.getReservas()){
-                if(reserva.getReservador().getCodigo().equals(codRes)){
+        while (aulaIterator.hasNext() && !encontrado) {    //busca por aulas al reservador
+            aula = aulaIterator.next();
+            Iterator<Reserva> reservaIterator = aula.getReservas().iterator();
+
+            while (reservaIterator.hasNext() && !encontrado) {    //busca por reservas de aulas al reservador
+                reserva = reservaIterator.next();
+                if (reserva.getReservador().getCodigo().equals(codRes)) {
                     sb.append(aula.toString()).append("\n");
-                    break outerLoop; // Salir de los dos for cuando encuentre el cod porque un reservador solo puede reservar un aula
+                    encontrado = true;
                 }
             }
         }
-
-        if (sb.length() == 0)
-            throw new ExcepcionCodNoEncontrado("No se enconró el código de un reservador " + codRes+".");
-        else
+        if (sb.length() == 0) {
+            throw new ExcepcionCodNoEncontrado("No se encontró el código de un reservador " + codRes + ".");
+        } else {
             return sb.toString();
+        }
     }
 
     public void cancelarReservaAula(int codAula, int codRes) throws ExcepcionCodNoEncontrado //cancela una reserva en un aula
