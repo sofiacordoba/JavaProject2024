@@ -51,6 +51,10 @@ public class Asignatura extends Reservador {
         return fechasDeClase;
     }
 
+    @Override
+    public double getMonto() { // calcula el monto recaudado por asignatura
+        return 0;
+    }
 
 }
 

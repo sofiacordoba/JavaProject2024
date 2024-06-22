@@ -30,5 +30,11 @@ public class Evento extends Reservador {
     public LocalDate getFecha(){ return fecha; }
     public LocalTime getHoraInicio(){ return horaInicio; }
     public LocalTime getHoraFin(){ return horaFin; }
+
+    @Override
+    public double getMonto() { // calcula el monto recaudado por evento interno
+        return 0.0;
+    }
+
 }
 

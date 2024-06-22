@@ -40,4 +40,10 @@ public class Curso extends Reservador {
 
         return fechasDeClase;
     }
+
+    @Override
+    public double getMonto() { // calcula el monto recaudado por curso
+        return costo * getCantParticipantes() /cantClases;
+    }
+
 }

@@ -32,4 +32,9 @@ public class Externo extends Evento {
     public void setCobroAl(double c){ cobroAlquiler=c; }
     public void setOrg(String o) { org=o; }
 
+    @Override
+    public double getMonto() { // calcula el monto recaudado por evento externo
+        return cobroAlquiler;
+    }
+
 }

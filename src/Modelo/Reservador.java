@@ -28,15 +28,8 @@ public abstract class Reservador implements Serializable {
     public String getDescripcion(){ return descripcion; }
     public int getCantParticipantes(){ return cantParticipantes; }
 
-    public double getMonto() { // calcula el monto basado en el tipo de reserva (Reportes)
-        if (this instanceof Externo) {
-            return ((Externo) this).getCobroAl();
-        } else if (this instanceof Curso) {
-            Curso curso = (Curso) this;
-            return curso.getCosto() * cantParticipantes; // costo por alumno y la cantidad de alumnos
-        } else { // En caso de otros tipos de reserva
-            return 0.0;
-        }
-    }
+    public abstract double getMonto(); // calcula el monto basado en el tipo de reserva (Reportes)
+
+
 
 }
