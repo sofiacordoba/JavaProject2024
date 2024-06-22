@@ -12,7 +12,7 @@ import javax.xml.transform.TransformerException;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
-/** La clase Persistencia se usa para serializar y deserializar.
+/** La clase Persistencia se usa para serializar y deserializar, para que los cambios hechos en el sistema se queden luego de la ejecución.
  * @autor Sofia Cordoba, Tatiana Malano Merlino, Josefina Garriz Scarpelli
  */
 
