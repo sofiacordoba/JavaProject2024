@@ -5,7 +5,7 @@ import java.time.LocalTime;
 
 /** La clase Evento representa un evento que existe dento de la universidad.
  * Puede realizar reservas de aulas.
- * Puede ser externo y derivado de la subclase Externo, si no es externo, es interno y no se deriva a ninguna subclase.
+ * Puede ser interno o externo, en este último caso, se deriva a la subclase Externo.
  * @author Sofia Cordoba, Tatiana Malano Merlino, Josefina Garriz Scarpelli
  */
 

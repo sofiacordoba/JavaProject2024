@@ -31,7 +31,6 @@ public class Reserva implements Serializable {
 
     //getters
     public int getCodReserva(){ return codReserva; }
-    public int getUltReserva(){ return ultimaReserva; }
     public LocalDate getFecha(){ return fecha; }
     public LocalTime getHoraInicio(){ return horaInicio; }
     public LocalTime getHoraFin(){ return horaFin; }

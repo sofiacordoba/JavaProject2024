@@ -1,7 +1,6 @@
 package Persistencia;
 
 import Modelo.*;
-import Excepciones.ExcepcionArchivoInvalido;
 import java.io.FileOutputStream;
 import java.io.FileInputStream;
 import java.io.ObjectOutputStream;

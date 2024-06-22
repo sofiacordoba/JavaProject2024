@@ -81,11 +81,12 @@ public class Universidad implements Serializable {
     {
         StringBuilder sb = new StringBuilder();
 
+        outerLoop:
         for(Aula aula: aulas){
             for(Reserva reserva: aula.getReservas()){
                 if(reserva.getReservador().getCodigo().equals(codRes)){
                     sb.append(aula.toString()).append("\n");
-                    break; // Salir del bucle interno para no repetir el aula y continuar con el siguiente ciclo del bucle externo para ver si el reservador reservó más aulas
+                    break outerLoop; // Salir de los dos for cuando encuentre el cod porque un reservador solo puede reservar un aula
                 }
             }
         }
@@ -265,9 +266,6 @@ public class Universidad implements Serializable {
     }
     public void agregarEvento(Evento evento) {
         eventos.add(evento);
-    }
-    public void agregarExterno(Externo externo) {
-        eventos.add(externo);
     }
 
 }

@@ -7,7 +7,7 @@ import Persistencia.*;
 
 
 /** La clase Main.
- * Une al dominio con la interfaz gráfica, la carga de datos y los reportes.
+ * Une al dominio con la interfaz gráfica, la carga de datos, la serialización y los reportes.
  * @author Sofia Cordoba, Tatiana Malano Merlino, Josefina Garriz Scarpelli
  */
 
@@ -48,22 +48,14 @@ public class Main {
             System.out.println(evento.getCodigo());
         }
 
-
-/*
-        //EJEMPLO de reserva
-
-        Reserva reservaW = new Reserva(LocalDate.of(2024, 6, 13), LocalTime.of(15, 0), LocalTime.of(16, 0), asignatura1);
-        aula1.agregarReserva(reservaW);
-*/
+        //interfaz gráfca
+        VentanaPrincipal ventana = new VentanaPrincipal(uni);
+        ventana.setVisible(true);
 
         // Guardar reportes en archivo de texto
         Reportes reportes = new Reportes();
         reportes.reporteMontoRecaudadoArchivo(uni.getAulas(), "reporteMontoRecaudado.txt");
         reportes.reporteAulasPorReservasArchivo(uni.getAulas(), "reporteAulasPorReservas.txt");
-
-        //interfaz gráfca
-        VentanaPrincipal ventana = new VentanaPrincipal(uni);
-        ventana.setVisible(true);
 
         // Agregar un shutdown hook para serializar datos al cerrar la aplicación
         Universidad finalUni = uni;

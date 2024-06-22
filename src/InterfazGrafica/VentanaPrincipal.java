@@ -1,6 +1,5 @@
 package InterfazGrafica;
 
-import Modelo.Aula;
 import Modelo.Universidad;
 import Excepciones.*;
 import java.time.LocalDate;
